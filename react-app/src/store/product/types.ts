@@ -1,4 +1,4 @@
-import { Action } from "redux";
+import { Action } from 'redux';
 
 export interface IProduct {
     productId: number;
@@ -22,10 +22,10 @@ export interface ProductState {
     pageIndex: number;
 }
 
-export const GET_PRODUCTS = "GET_PRODUCTS";
-export const GET_PRODUCT = "GET_PRODUCT";
-export const SET_PREDICATE = "SET_PREDICATE";
-export const SET_PAGE = "SET_PAGE";
+export const GET_PRODUCTS = 'GET_PRODUCTS';
+export const GET_PRODUCT = 'GET_PRODUCT';
+export const SET_PREDICATE = 'SET_PREDICATE';
+export const SET_PAGE = 'SET_PAGE';
 export const ITEMS_PER_PAGE = 10;
 
 export interface GetProductsAction extends Action {
@@ -48,8 +48,4 @@ export interface SetPageAction extends Action {
     payload: number;
 }
 
-export type ProductActionTypes =
-    | GetProductsAction
-    | GetProductAction
-    | SetPredicateAction
-    | SetPageAction;
+export type ProductActionTypes = GetProductsAction | GetProductAction | SetPredicateAction | SetPageAction;

@@ -1,0 +1,28 @@
+body
+    color: $color-primary
+    font-family: 'Lato', sans-serif
+    font-weight: 400
+
+.site-title
+    margin-right: 3rem
+    font-size: 2.2rem
+    font-weight: 900
+    letter-spacing: 1px
+    text-transform: uppercase
+
+    @include respond-to(L)
+        margin-right: 0
+
+.heading-primary
+    color: $color-white
+    font-size: 18rem
+    font-weight: 700
+    letter-spacing: 0.5rem
+    text-transform: uppercase
+    animation-fill-mode: forwards
+
+    @include respond-to(S)
+        font-size: 12rem
+
+    @include respond-to(XXS)
+        font-size: 7rem

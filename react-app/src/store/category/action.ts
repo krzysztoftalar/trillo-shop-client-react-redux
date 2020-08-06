@@ -1,13 +1,9 @@
-import { ThunkResult } from "../../app/helpers/reduxHelpers";
-import {
-    errorActionAsync,
-    startActionAsync,
-    stopActionAsync,
-} from "../asyncAction/action";
-import agent from "../../app/api/agent";
-import { GET_CATEGORIES } from "./types";
+import { ThunkResult } from '../../app/helpers/reduxHelpers';
+import { errorActionAsync, startActionAsync, stopActionAsync } from '../asyncAction/action';
+import agent from '../../app/api/agent';
+import { GET_CATEGORIES } from './types';
 
-export const getCategories = (): ThunkResult => async (dispatch) => {
+const getCategories = (): ThunkResult => async (dispatch) => {
     dispatch(startActionAsync());
 
     try {
@@ -19,3 +15,5 @@ export const getCategories = (): ThunkResult => async (dispatch) => {
         dispatch(stopActionAsync());
     }
 };
+
+export default getCategories;

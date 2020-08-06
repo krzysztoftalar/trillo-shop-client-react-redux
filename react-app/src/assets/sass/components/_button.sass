@@ -1,0 +1,108 @@
+.btn
+    width: 20rem
+    backface-visibility: hidden
+    border: 1px solid $color-primary-light
+    font-size: 1.2rem
+    font-weight: 700
+    line-height: 7rem
+    text-transform: uppercase
+    cursor: pointer
+
+    @include respond-to(XXS)
+        width: 17rem
+        line-height: 5rem
+
+    &:focus,
+    &:active
+        outline: none
+
+    &--white
+        transition: border 0.3s, background-color 0.3s, color 0.3s
+        background-color: $color-white
+        color: $color-primary-light
+
+        &:hover
+            border: 1px solid $color-white
+            background-color: transparent
+            color: $color-white
+
+// Square button
+// -----------------------------------------
+.button-square
+    position: absolute
+    right: 0
+    bottom: 0
+    width: 12rem
+    height: 12rem
+    border: none
+    background-color: $color-primary-light
+    cursor: pointer
+
+    @include respond-to(XXS)
+        width: 6rem
+        height: 6rem
+
+    &:focus,
+    &:active
+        outline: none
+
+    &:hover  &__icon
+        margin-left: 0.8rem
+
+    &__icon
+        transition: margin-left 0.3s
+        color: $color-white
+        font-size: 3rem
+
+        @include respond-to(XXS)
+            font-size: 2rem
+
+// Hamburger button
+// -----------------------------------------
+.hamburger-btn
+    display: flex
+    align-items: center
+    justify-content: center
+    padding: 2rem 1rem
+    border: none
+    background: transparent
+    cursor: pointer
+
+    &:focus,
+    &:active
+        outline: none
+
+    &__icon
+        position: relative
+
+        &,
+        &::before,
+        &::after
+            display: inline-block
+            width: 2rem
+            height: 2px
+            background-color: $color-primary
+
+        &::before,
+        &::after
+            content: ''
+            position: absolute
+            left: 0
+
+        &::before
+            top: -0.6rem
+
+        &::after
+            top: 0.6rem
+
+    // Button clicked
+    &--open &__icon
+        background-color: transparent
+
+    &--open &__icon::before
+        top: 0
+        transform: rotate(135deg)
+
+    &--open &__icon::after
+        top: 0
+        transform: rotate(-135deg)

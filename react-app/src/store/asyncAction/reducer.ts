@@ -1,22 +1,13 @@
-import { Reducer } from "redux";
+import { Reducer } from 'redux';
 // imports from src
-import {
-    AsyncActionState,
-    AsyncActionTypes,
-    ERROR_ACTION_ASYNC,
-    START_ACTION_ASYNC,
-    STOP_ACTION_ASYNC,
-} from "./types";
+import { AsyncActionState, AsyncActionTypes, ERROR_ACTION_ASYNC, START_ACTION_ASYNC, STOP_ACTION_ASYNC } from './types';
 
 export const INITIAL_STATE: AsyncActionState = {
     loading: false,
-    error: "",
+    error: '',
 };
 
-export const AsyncActionReducer: Reducer<AsyncActionState, AsyncActionTypes> = (
-    state = INITIAL_STATE,
-    action
-) => {
+export const AsyncActionReducer: Reducer<AsyncActionState, AsyncActionTypes> = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case START_ACTION_ASYNC:
             return { ...state, loading: true };

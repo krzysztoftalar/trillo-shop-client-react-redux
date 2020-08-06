@@ -5,7 +5,7 @@ import {
     StartActionAsync,
     STOP_ACTION_ASYNC,
     StopActionAsync,
-} from "./types";
+} from './types';
 
 export const startActionAsync = (): StartActionAsync => ({
     type: START_ACTION_ASYNC,

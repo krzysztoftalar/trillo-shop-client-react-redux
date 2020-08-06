@@ -1,0 +1,101 @@
+.header
+    display: grid
+    position: relative
+    grid-column: side-start / center-end
+    grid-row: 1 / 2
+    grid-template-columns: 12rem repeat(2, 1fr)
+
+    @include respond-to(L)
+        grid-column: side-start / -1
+        grid-template-columns: repeat(3, 1fr)
+
+    @include respond-to(XXXS)
+        z-index: 300
+
+    &__left-items
+        display: flex
+        align-items: center
+
+        @include respond-to(L)
+            justify-self: center
+
+        &--bp
+            @include respond-to(L)
+                display: none
+
+    &__right-items
+        display: grid
+        grid-template-columns: max-content 4.7rem repeat(2, max-content)
+        align-items: center
+        justify-items: center
+        justify-self: end
+
+        @include respond-to(L)
+            grid-template-columns: max-content
+            margin-right: 3rem
+
+        @include respond-to(S)
+            margin-right: 1rem
+
+        &--bp
+            @include respond-to(L)
+                display: none
+
+        &--form
+            justify-self: end
+
+            @include respond-to(L)
+                display: none
+
+    &__hamburger-box
+        display: flex
+        visibility: hidden
+        align-items: center
+        justify-content: center
+        width: 7rem
+        height: 7rem
+
+        @include respond-to(L)
+            visibility: visible
+            height: 6rem
+
+    &__account
+        position: relative
+
+        &:hover .header__account-links
+            transform: translateY(0)
+            opacity: 1
+            pointer-events: initial
+
+    &__account-link
+        padding: 2rem
+
+        &:link,
+        &:visited
+            display: inline-block
+            color: $color-primary
+            font-size: 1.4rem
+            text-decoration: none
+
+    &__account-links
+        position: absolute
+        z-index: 100
+        top: 3.1rem
+        left: -2rem
+        width: 18rem
+        padding-top: 6rem
+        transform: translateY(2rem)
+        transition: transform 0.5s, opacity 0.4s
+        opacity: 0
+        pointer-events: none
+
+
+
+
+
+
+
+
+
+
+

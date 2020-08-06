@@ -1,0 +1,39 @@
+// Fade in animation
+// ---------------------------------
+.fadeIn
+    animation: fadeIn 1s
+
+    &--slow
+        animation: fadeIn 0.5s
+
+@keyframes fadeIn
+    0%
+        opacity: 0
+
+    100%
+        opacity: 1
+
+// Fade out animation
+// ---------------------------------
+.fadeOut
+    animation: fadeOut 0.5s
+
+@keyframes fadeOut
+    0%
+        opacity: 1
+
+    100%
+        opacity: 0
+
+// Slide in from top animation
+// ---------------------------------
+.moveInFromTop
+    animation: moveInFromTop 1s
+
+@keyframes moveInFromTop
+    0%
+        transform: translateY(-100%)
+
+    100%
+        transform: translate(0)
+
