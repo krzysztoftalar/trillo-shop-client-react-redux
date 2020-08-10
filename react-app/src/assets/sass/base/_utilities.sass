@@ -13,3 +13,13 @@
 
 .u-margin-bottom-big
     margin-bottom: 8rem !important
+
+// Display: none
+// ---------------------------------
+.u-display-none-l
+    @include respond-to(L)  // 1200px
+        display: none
+
+.u-display-none-xs
+    @include respond-to(XS) // 600px
+        display: none

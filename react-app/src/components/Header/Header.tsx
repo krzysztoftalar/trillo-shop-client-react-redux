@@ -34,7 +34,7 @@ const Header: React.FC<IProps> = ({ setOpen, open }: IProps): JSX.Element => {
             <nav className="header__left-items">
                 <h3 className="site-title">Trillo</h3>
 
-                <div className="header__left-items--bp">
+                <div className="u-display-none-l">
                     <Navigation links={headerLinks} />
                 </div>
             </nav>
@@ -43,8 +43,8 @@ const Header: React.FC<IProps> = ({ setOpen, open }: IProps): JSX.Element => {
             <nav className="header__right-items">
                 {/* -------- Sign In -------- */}
                 {!isLoggedIn && (
-                    <div className="header__right-items--bp">
-                        <a href="/" className="header__account-link">
+                    <div className="u-display-none-l">
+                        <a href="/" className="header__account-link ">
                             Sign In
                         </a>
                     </div>
@@ -52,7 +52,7 @@ const Header: React.FC<IProps> = ({ setOpen, open }: IProps): JSX.Element => {
 
                 {/* -------- My Account box -------- */}
                 {isLoggedIn && (
-                    <div className="header__account header__right-items--bp">
+                    <div className="header__account u-display-none-l">
                         <a href="/" className="header__account-link">
                             My Account
                         </a>
@@ -69,7 +69,7 @@ const Header: React.FC<IProps> = ({ setOpen, open }: IProps): JSX.Element => {
                 </div>
 
                 {/* -------- Cart and wishlist quantity -------- */}
-                <div className="header__right-items--bp">
+                <div className="u-display-none-l">
                     <NavIconBox props={icons[0]} />
                 </div>
 

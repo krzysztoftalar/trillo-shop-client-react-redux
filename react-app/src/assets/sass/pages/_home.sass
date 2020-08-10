@@ -1,3 +1,5 @@
+// Home container
+// ---------------------------------
 .container
     display: grid
     grid-template-columns: [side-start] 6rem [side-end full-start] 6rem [center-start] repeat(8, [col-start] 1fr [col-end]) [center-end] 6rem [full-end]
@@ -6,6 +8,8 @@
     @include respond-to(L)
         grid-template-rows: 6rem calc(100vh - 6rem)
 
+// Sidebar
+// ---------------------------------
 .sidebar
     display: grid
     position: relative
@@ -34,6 +38,8 @@
         padding: 0 1.2rem
         fill: $color-primary
 
+// Header / carousel content
+// ---------------------------------
 .header-content
     position: relative
     grid-column: side-start / -1
@@ -80,6 +86,63 @@
         & > span
             display: inline-block
             margin-right: 1rem
+
+// Section products
+// ---------------------------------
+.products
+    display: grid
+    position: relative
+    grid-column: full-start / center-end
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr))
+    grid-gap: 5rem
+    padding: 20rem 0
+    background-color: $color-white
+
+    @include respond-to(L)
+        grid-column: side-start / -1
+        grid-gap: 4rem
+        padding: 15rem 4rem 20rem
+
+    @include respond-to(S)
+        grid-gap: 2rem
+        padding: 7.5rem 2rem 15rem
+
+    @include respond-to(XXS)
+        grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr))
+        padding: 6rem 2rem 15rem
+
+    &__box
+        position: relative
+        color: $color-primary
+
+        &::after
+            content: ''
+            position: absolute
+            bottom: 0
+            width: 2rem
+            border-bottom: 2px solid $color-primary
+
+        @include respond-to(S)
+            grid-column: 1 / -1
+            padding-bottom: 3rem
+
+    &__title
+        margin-bottom: 3.6rem
+
+    &__description
+        font-size: 1.5rem
+        font-weight: 300
+        line-height: 2
+
+    &__button-box
+        position: absolute
+        align-self: end
+        justify-self: center
+        margin-bottom: 10rem
+
+        @include respond-to(S)
+            margin-bottom: 7rem
+
 
 
 

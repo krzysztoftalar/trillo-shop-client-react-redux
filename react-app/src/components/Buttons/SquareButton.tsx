@@ -6,8 +6,8 @@ interface IProps {
 
 const SquareButton: React.FC<IProps> = ({ handleClick }: IProps) => {
     return (
-        <button onClick={() => handleClick()} className="button-square" type="button">
-            <span className="button-square__icon">&rarr;</span>
+        <button onClick={() => handleClick()} className="btn-square" type="button">
+            <span className="btn-square__icon">&rarr;</span>
         </button>
     );
 };

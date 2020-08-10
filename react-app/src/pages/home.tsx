@@ -6,6 +6,7 @@ import SideDrawer from '../components/SideDrawer/SideDrawer';
 import Header from '../components/Header/Header';
 import Backdrop from '../components/Backdrop/Backdrop';
 import headerImages from '../app/options/headerImages';
+import Products from '../components/Home/Products';
 
 const Home = (): ReactElement => {
     const [open, setOpen] = useState(false);
@@ -13,12 +14,17 @@ const Home = (): ReactElement => {
     return (
         <>
             <Backdrop setOpen={setOpen} open={open} />
+
+            {/* Section Header */}
             <Header setOpen={setOpen} open={open} />
             <SideBar />
-            <SideDrawer open={open} />
+            <SideDrawer setOpen={setOpen} open={open} />
             <div className="header-content">
                 <Carousel images={headerImages} />
             </div>
+
+            {/* Section Products */}
+            <Products />
         </>
     );
 };

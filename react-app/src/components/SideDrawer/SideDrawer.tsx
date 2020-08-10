@@ -9,12 +9,14 @@ import NavigationItem from '../Navigation/NavigationItem';
 import NavigationIcons from '../Home/NavigationIcons';
 import Dropdown from '../Dropdown/Dropdown';
 import currencies from '../../app/options/currencies';
+import Header from '../Header/Header';
 
 interface IProps {
+    setOpen: (open: boolean) => void;
     open: boolean;
 }
 
-const SideDrawer: React.FC<IProps> = ({ open }: IProps): JSX.Element => {
+const SideDrawer: React.FC<IProps> = ({ setOpen, open }: IProps): JSX.Element => {
     // Classes for styling Navigation component
     const navProps = {
         ul: 'navigation--col',
@@ -24,6 +26,10 @@ const SideDrawer: React.FC<IProps> = ({ open }: IProps): JSX.Element => {
 
     return (
         <div className={`side-drawer ${open ? 'side-drawer--open fadeIn--slow' : 'fadeOut'}`}>
+            <div className="side-drawer__mobile-header">
+                <Header setOpen={setOpen} open={open} />
+            </div>
+
             <SearchForm props="search__input--right-side" />
 
             <Navigation props={navProps} links={headerLinks} />

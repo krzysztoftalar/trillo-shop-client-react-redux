@@ -9,19 +9,12 @@
         grid-column: side-start / -1
         grid-template-columns: repeat(3, 1fr)
 
-    @include respond-to(XXXS)
-        z-index: 300
-
     &__left-items
         display: flex
         align-items: center
 
         @include respond-to(L)
             justify-self: center
-
-        &--bp
-            @include respond-to(L)
-                display: none
 
     &__right-items
         display: grid
@@ -36,10 +29,6 @@
 
         @include respond-to(S)
             margin-right: 1rem
-
-        &--bp
-            @include respond-to(L)
-                display: none
 
         &--form
             justify-self: end

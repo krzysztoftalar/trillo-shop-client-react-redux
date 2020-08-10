@@ -1,3 +1,5 @@
+// Button transparent hover
+// -----------------------------------------
 .btn
     width: 20rem
     backface-visibility: hidden
@@ -26,9 +28,33 @@
             background-color: transparent
             color: $color-white
 
+// Button outline
+// -----------------------------------------
+.btn-outline
+    width: 15rem
+    height: 3.5rem
+    transition: transform 0.2s
+    border: 1px solid $color-primary
+    background-color: transparent
+    color: $color-primary
+    font-size: 1.2rem
+    text-transform: uppercase
+    cursor: pointer
+
+    &:focus,
+    &:active
+        outline: none
+
+    &--grey
+        transition: border 0.3s, color 0.3s
+
+        &:hover
+            border: 1px solid $color-grey-dark
+            color: $color-grey-dark
+
 // Square button
 // -----------------------------------------
-.button-square
+.btn-square
     position: absolute
     right: 0
     bottom: 0

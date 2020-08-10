@@ -1,0 +1,48 @@
+.slider
+    display: flex
+    position: absolute
+    top: 0
+    left: 0
+
+    &__wrapper
+        display: flex
+        transition: transform 0.4s
+
+    &__img
+        width: 100%
+
+    &__btn
+        position: absolute
+        //z-index: 100
+        align-self: center
+        width: 3rem
+        height: 5rem
+        transform: translateY(-6rem)
+        transition: opacity 0.4s cubic-bezier(1, 0, 0, 1)
+        border: none
+        opacity: 0
+        background-color: $color-white
+        cursor: pointer
+
+        &:focus,
+        &:active
+            outline: none
+
+        &--next
+            right: 0
+
+        &--prev
+            left: 0
+
+    &__btn-icon
+        width: 2rem
+        height: 2rem
+        fill: $color-primary
+
+        &--next
+            transform: rotate(-90deg)
+
+        &--prev
+            transform: rotate(90deg)
+
+
