@@ -7,6 +7,7 @@ import Header from '../components/Header/Header';
 import Backdrop from '../components/Backdrop/Backdrop';
 import headerImages from '../app/options/headerImages';
 import Products from '../components/Home/Products';
+import Deal from '../components/Home/Deal';
 
 const Home = (): ReactElement => {
     const [open, setOpen] = useState(false);
@@ -25,6 +26,9 @@ const Home = (): ReactElement => {
 
             {/* Section Products */}
             <Products />
+
+            {/* Section Deal of the week */}
+            <Deal />
         </>
     );
 };

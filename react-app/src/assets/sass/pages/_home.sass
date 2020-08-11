@@ -3,10 +3,10 @@
 .container
     display: grid
     grid-template-columns: [side-start] 6rem [side-end full-start] 6rem [center-start] repeat(8, [col-start] 1fr [col-end]) [center-end] 6rem [full-end]
-    grid-template-rows: 12rem calc(100vh - 12rem)
+    grid-template-rows: 12rem calc(100vh - 12rem) min-content 60vw
 
     @include respond-to(L)
-        grid-template-rows: 6rem calc(100vh - 6rem)
+        grid-template-rows: 6rem calc(100vh - 6rem) repeat(2, min-content)
 
 // Sidebar
 // ---------------------------------
@@ -143,12 +143,36 @@
         @include respond-to(S)
             margin-bottom: 7rem
 
+// Section deal of the week
+// ---------------------------------
+.deal
+    display: flex
+    grid-column: side-start / -1
+    grid-row: 4 / 5
+    padding: 0 6rem 5rem
+    background: url('../img/deal-of-the-week.jpg') no-repeat center
+    background-size: cover
+    color: $color-white
+    
+    @include respond-to(L)
+        padding: 0 4rem 5rem
 
+    @include respond-to(S)
+        padding: 14rem 2rem 4rem
+    
+    &__main-box
+        display: flex
+        flex-direction: column
+        align-self: flex-end
+        
+    &__small-box
+        display: grid
+        grid-gap: 4rem
+        margin-bottom: 16rem
 
-
-
-
-
-
-
-
+        @include respond-to(L)
+            margin-bottom: 8rem
+            
+        @include respond-to(S)
+            grid-gap: 3rem
+            margin-bottom: 6rem

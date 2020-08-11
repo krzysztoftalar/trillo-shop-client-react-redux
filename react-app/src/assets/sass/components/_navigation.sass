@@ -29,6 +29,7 @@
 
         &::before
             content: ''
+            display: inline-block
             position: absolute
             top: 2.8rem
             left: 0
@@ -37,7 +38,7 @@
             transform: scaleX(0)
             transform-origin: 100% 50%
             transition: transform 0.3s
-            background-color: $color-primary
+            background-color: currentColor
 
     &__link
         &--box:link,

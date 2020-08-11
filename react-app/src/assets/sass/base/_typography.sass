@@ -21,6 +21,12 @@ body
     text-transform: uppercase
     animation-fill-mode: forwards
 
+    @include respond-to(L)
+        font-size: 15rem
+        
+    @include respond-to(M)
+        font-size: 15rem
+
     @include respond-to(S)
         font-size: 12rem
 
@@ -33,3 +39,33 @@ body
 
     @include respond-to(L)
         font-size: 4rem
+
+.heading-tertiary
+    font-size: 12rem
+
+    @include respond-to(L)
+        font-size: 10rem
+        
+    @include respond-to(M)
+        font-size: 6rem
+
+.heading-quaternary
+    font-size: 1.3rem
+    font-weight: 900
+    letter-spacing: 0.5px
+    text-transform: uppercase
+
+// Dash box
+.dash
+    display: flex
+    align-items: center
+
+    &__line
+        display: inline-block
+        width: 2rem
+        margin-right: 1rem
+        border-bottom: 2px solid $color-white
+        color: $color-white
+
+
+

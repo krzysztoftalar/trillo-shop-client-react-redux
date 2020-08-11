@@ -28,6 +28,38 @@
             background-color: transparent
             color: $color-white
 
+// Underline button
+// -----------------------------------------
+.btn-underline
+    position: relative
+    width: fit-content
+    padding: 1rem 0
+    border: none
+    background-color: transparent
+    font-size: 1.5rem
+    cursor: pointer
+
+    &:hover::before
+        width: 100%
+
+    &:before
+        content: ''
+        display: inline-block
+        position: absolute
+        bottom: 0
+        left: 0
+        width: 2rem
+        height: 1.5px
+        transition: width 0.4s
+        background-color: currentColor
+
+    &:focus,
+    &:active
+        outline: none
+
+    &--white
+        color: $color-white
+
 // Button outline
 // -----------------------------------------
 .btn-outline
