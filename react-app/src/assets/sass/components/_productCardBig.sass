@@ -1,0 +1,63 @@
+.productCardBig
+    position: relative
+    overflow: hidden
+    color: $color-white
+    cursor: pointer
+
+    &:hover &__img
+        transform: scale(1.1)
+
+    &__img
+        display: block
+        width: 100%
+        height: auto
+        transition: transform 1s
+        background: no-repeat center
+        background-size: cover
+
+    &__box
+        display: grid
+        position: absolute
+        top: 0
+        left: 0
+        grid-template-rows: 1fr 7rem 6rem
+        height: 100%
+        padding: 4rem
+
+        @include respond-to(S)
+            padding: 2rem
+
+    &__btn
+        box-sizing: content-box
+        align-self: start
+        width: fit-content
+        padding: 1rem 2rem
+        transform: translate(-2rem, -1rem)
+        transition: color 0.3s
+        border: none
+        background-color: transparent
+        color: currentColor
+        cursor: pointer
+
+        &:hover
+            color: $color-primary
+
+        &:hover .dash__line
+            border-bottom: 2px solid $color-primary
+
+        &:focus,
+        &:active
+            outline: none
+
+    &__title
+        font-size: 4rem
+
+        @include respond-to(S)
+            font-size: 3.5rem
+
+    &__price
+        font-size: 2.3rem
+        font-weight: 700
+
+        @include respond-to(S)
+            font-size: 2rem

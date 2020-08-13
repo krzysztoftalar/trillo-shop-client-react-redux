@@ -1,12 +1,15 @@
-// Home container
+// Home page container
 // ---------------------------------
 .container
     display: grid
-    grid-template-columns: [side-start] 6rem [side-end full-start] 6rem [center-start] repeat(8, [col-start] 1fr [col-end]) [center-end] 6rem [full-end]
-    grid-template-rows: 12rem calc(100vh - 12rem) min-content 60vw
+    grid-template-columns: [side-start] 6rem [side-end full-start] 6rem [center-start] repeat(8, [col-start] 1fr [col-end]) [center-end side-right-start] 6rem [side-right-end] 6rem [full-end]
+    grid-template-rows: 12rem calc(100vh - 12rem) min-content 50vw
 
     @include respond-to(L)
-        grid-template-rows: 6rem calc(100vh - 6rem) repeat(2, min-content)
+        grid-template-rows: 6rem calc(100vh - 6rem) min-content 60vw
+
+    @include respond-to(S)
+        grid-template-rows: 6rem calc(100vh - 6rem)
 
 // Sidebar
 // ---------------------------------
@@ -28,6 +31,7 @@
 
     &__icons-box
         display: grid
+        grid-gap: 1rem
 
         @include respond-to(M)
             display: none
@@ -36,7 +40,14 @@
         width: 4rem
         height: 4rem
         padding: 0 1.2rem
+        transition: fill 0.3s, background-color 0.3s
+        border: 1px solid $color-grey-light
+        border-radius: 50%
         fill: $color-primary
+
+        &:hover
+            background-color: $color-primary
+            fill: $color-white
 
 // Header / carousel content
 // ---------------------------------
@@ -87,12 +98,12 @@
             display: inline-block
             margin-right: 1rem
 
-// Section products
+// Products section
 // ---------------------------------
 .products
     display: grid
     position: relative
-    grid-column: full-start / center-end
+    grid-column: full-start / side-right-end
     grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr))
     grid-gap: 5rem
     padding: 20rem 0
@@ -143,7 +154,7 @@
         @include respond-to(S)
             margin-bottom: 7rem
 
-// Section deal of the week
+// Deal section
 // ---------------------------------
 .deal
     display: flex
@@ -153,18 +164,18 @@
     background: url('../img/deal-of-the-week.jpg') no-repeat center
     background-size: cover
     color: $color-white
-    
+
     @include respond-to(L)
         padding: 0 4rem 5rem
 
     @include respond-to(S)
         padding: 14rem 2rem 4rem
-    
+
     &__main-box
         display: flex
         flex-direction: column
         align-self: flex-end
-        
+
     &__small-box
         display: grid
         grid-gap: 4rem
@@ -172,7 +183,169 @@
 
         @include respond-to(L)
             margin-bottom: 8rem
-            
+
         @include respond-to(S)
             grid-gap: 3rem
             margin-bottom: 6rem
+
+// Subscribe section
+// ---------------------------------
+.subscribe
+    display: grid
+    grid-gap: 2rem
+    padding: 6rem 5rem 7rem 7rem
+    border: 1px solid currentColor
+    color: $color-primary
+
+    @include respond-to(XL)
+        padding: 3rem 4rem 4rem
+
+    @include respond-to(M)
+        padding: 1rem 2rem 2rem
+
+    &__title
+        font-size: 3.5rem
+        font-weight: 400
+        letter-spacing: 1px
+
+        @include respond-to(S)
+            font-size: 3rem
+
+    &__description
+        font-size: 1.5rem
+        line-height: 1.5
+
+    &__form
+        display: flex
+
+        @include respond-to(L)
+            flex-direction: column
+
+    &__input
+        flex: 1
+        width: 100%
+        height: 6rem
+        margin-right: 2rem
+        padding: 1.7rem 2rem
+        transition: border-width 0.4s
+        border: 1px solid $color-primary
+        color: inherit
+        font-family: inherit
+        font-size: 1.5rem
+
+        @include respond-to(L)
+            margin-bottom: 1.5rem
+
+        &:focus
+            border-width: 2px
+            outline: none
+
+        &:invalid
+            box-shadow: none
+
+    &__button
+        padding: 2rem 5rem
+        border: none
+        background-color: $color-primary
+        color: $color-white
+        font-size: 1.5rem
+        font-weight: 700
+        cursor: pointer
+
+    &__left-card,
+    &__right-card
+        padding: 12rem 6rem
+        background-color: $color-white
+
+        @include respond-to(L)
+            padding: 12rem 4rem
+
+    &__left-card
+        grid-column: side-start / col-end 4
+
+        @include respond-to(M)
+            padding: 12rem 2rem 12rem 4rem
+
+        @include respond-to(S)
+            padding: 6rem 1rem 6rem 2rem
+
+        @include respond-to(XS)
+            grid-column: side-start / -1
+            padding: 6rem 2rem 2rem
+
+    &__right-card
+        display: flex
+        position: relative
+        grid-column: col-start 5 / -1
+        flex-direction: column
+
+        @include respond-to(M)
+            padding: 12rem 4rem 12rem 2rem
+
+        @include respond-to(S)
+            padding: 6rem 2rem 6rem 1rem
+
+        @include respond-to(XS)
+            grid-column: side-start / -1
+            padding: 2rem 2rem 4rem
+
+    &__right-card-wrapper
+        flex: 1
+        margin-top: -25rem
+
+        @include respond-to(S)
+            margin-top: 0
+
+    &__form-wrapper
+        display: none
+        grid-column: side-start / -1
+        padding: 0 2rem 6rem
+
+        @include respond-to(S)
+            display: initial
+
+// Promo section
+// ---------------------------------
+.promo
+    &__left-item,
+    &__right-item
+        display: grid
+        grid-template-rows: 1fr min-content
+        justify-items: center
+        padding: 3rem 1rem 3.5rem
+        color: $color-primary
+        text-align: center
+
+    &__left-item
+        grid-column: side-start / col-end 4
+        background: url('../img/promo-1.jpg') no-repeat center
+        background-size: cover
+
+        @include respond-to(S)
+            grid-column: side-start / -1
+
+    &__right-item
+        grid-column: col-start 5 / -1
+        background: url('../img/promo-2.jpg') no-repeat center
+        background-size: cover
+
+        @include respond-to(S)
+            grid-column: side-start / -1
+
+    &__text
+        margin: 2.5rem
+        font-size: 2.2rem
+        line-height: 1.7
+
+    &__link:link,
+    &__link:visited
+        display: block
+        padding: 0.7rem 0
+        border-bottom: 1px solid $color-primary
+        color: $color-primary
+        font-size: 1.3rem
+        font-weight: 700
+        text-decoration: none
+        text-transform: uppercase
+
+

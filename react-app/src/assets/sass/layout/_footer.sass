@@ -1,0 +1,148 @@
+// Footer
+// ---------------------------------
+.footer
+    display: grid
+    grid-column: full-start / side-right-end
+    grid-template-columns: 1fr max-content
+    grid-gap: 2rem
+    padding: 6rem 0 4rem
+    background-color: $color-white
+    color: $color-primary
+
+    // Navigation links box
+    &__nav
+        display: grid
+        grid-template-columns: repeat(3, minmax(max-content, 1fr))
+        align-items: center
+        justify-items: start
+        list-style: none
+
+    // Email abd phone box
+    &__contact-box
+        display: flex
+        flex-direction: column
+        align-items: flex-end
+        justify-content: center
+
+    // Box under divider
+    &__main-box
+        display: grid
+        grid-column: 1 / -1
+        grid-template-columns: repeat(2, 1fr)
+
+    // Main-box - left items
+    &__left-items
+        display: grid
+        grid-gap: 5rem
+
+    // Main-box - right items
+    &__right-items
+        display: grid
+        grid-gap: 5rem
+        justify-items: end
+
+    // Main-box - right items - dropdown box
+    &__dropdown
+        display: flex
+        align-items: center
+        margin-right: -1.5rem
+        font-size: 1.6rem
+
+    // Main-box - left items - social links
+    &__social-box
+        display: grid
+        grid-template-columns: repeat(4, min-content)
+        grid-gap: 1rem
+        margin-left: -1.2rem
+
+    &__text
+        font-size: 1.4rem
+        line-height: 1.5
+
+        &:not(:last-child)
+            margin-bottom: 2rem
+
+    &__img
+        display: block
+        height: 100%
+
+    &__divider
+        grid-column: 1 / -1
+        margin: 1.5rem 0
+        border: none
+        border-bottom: $line
+
+    // Styles for &__nav links
+    &__item
+        padding: 2rem 0
+
+    &__link:link,
+    &__link:visited
+        display: inline-block
+        position: relative
+        color: $color-primary
+        font-size: 1.6rem
+        text-align: center
+        text-decoration: none
+
+        &::before
+            content: ''
+            display: inline-block
+            position: absolute
+            bottom: -1rem
+            left: 0
+            width: 100%
+            height: 0.5px
+            transform: scaleX(0)
+            transform-origin: 100% 50%
+            transition: transform 0.3s
+            background-color: $color-primary
+
+    &__link:hover::before,
+    &__link:focus::before,
+    &__link:active::before
+        transform: scaleX(1)
+        transform-origin: 0 50%
+
+    // Media queries
+    // ---------------------------------------------
+    @include respond-to(L)
+        grid-column: side-start / -1
+        padding: 6rem 4rem 4rem
+
+    @include respond-to(S)
+        grid-template-columns: 1fr
+        padding: 6rem 2rem 4rem
+
+        &__nav
+            grid-template-columns: repeat(3, minmax(max-content, 1fr))
+            justify-items: center
+
+        &__contact-box
+            align-items: center
+
+        &__main-box
+            grid-template-columns: 1fr
+            grid-gap: 2rem
+
+        &__left-items,
+        &__right-items
+            justify-items: center
+
+        &__left-items
+            order: 1
+
+    @include respond-to(XS)
+        padding: 4rem 2rem
+
+        &__nav
+            grid-template-columns: repeat(2, minmax(max-content, 1fr))
+
+        &__left-items,
+        &__right-items
+            grid-gap: 3rem
+
+        &__item
+            padding: 1.5rem 0
+
+

@@ -6,8 +6,11 @@ import SideDrawer from '../components/SideDrawer/SideDrawer';
 import Header from '../components/Header/Header';
 import Backdrop from '../components/Backdrop/Backdrop';
 import headerImages from '../app/options/headerImages';
-import Products from '../components/Home/Products';
-import Deal from '../components/Home/Deal';
+import DealSection from '../components/Home/DealSection';
+import ProductsSection from '../components/Home/ProductsSection';
+import SubscribeSection from '../components/Home/SubscribeSection';
+import PromoSection from '../components/Home/PromoSection';
+import Footer from '../components/Home/Footer';
 
 const Home = (): ReactElement => {
     const [open, setOpen] = useState(false);
@@ -16,7 +19,7 @@ const Home = (): ReactElement => {
         <>
             <Backdrop setOpen={setOpen} open={open} />
 
-            {/* Section Header */}
+            {/* Header */}
             <Header setOpen={setOpen} open={open} />
             <SideBar />
             <SideDrawer setOpen={setOpen} open={open} />
@@ -24,11 +27,20 @@ const Home = (): ReactElement => {
                 <Carousel images={headerImages} />
             </div>
 
-            {/* Section Products */}
-            <Products />
+            {/* Products section */}
+            <ProductsSection />
 
-            {/* Section Deal of the week */}
-            <Deal />
+            {/* Deal section */}
+            <DealSection />
+
+            {/* Subscribe section */}
+            <SubscribeSection />
+
+            {/* Promo section */}
+            <PromoSection />
+
+            {/* Footer */}
+            <Footer />
         </>
     );
 };

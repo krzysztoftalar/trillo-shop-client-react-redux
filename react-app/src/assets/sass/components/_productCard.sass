@@ -22,6 +22,16 @@
     &:hover .slider__btn
         opacity: 1
 
+    // Disable hover effects under 800px
+    @media only screen and (max-width: 50em), only screen and (hover: none)
+        box-shadow: 0 0.8rem 1.2rem 0 rgba(0, 0, 0, 0.1)
+
+        &:hover &__summary
+            transform: translateY(0)
+
+        .slider__btn
+            opacity: 1
+
     &__img
         z-index: -10
         width: 100%
@@ -31,6 +41,9 @@
         height: 8rem
         transition: transform 0.4s
         background-color: $color-white
+
+        @include respond-to(S)
+            height: 12.5rem
 
     &__title
         padding: 2rem
@@ -53,6 +66,10 @@
         transform: translateY(50%)
         transition: transform 0.4s cubic-bezier(1, 0, 0, 1), opacity 0.4s cubic-bezier(1, 0, 0, 1)
         opacity: 0
+
+        @include respond-to(S)
+            transform: translateY(0)
+            opacity: 1
 
     &__btn
         margin-left: 1rem
@@ -77,10 +94,6 @@
         align-items: center
         margin-right: 1rem
 
-        &--dn-XS
-            @include respond-to(XS)
-                display: none
-
     &__icon
         width: 4rem
         height: 4rem
@@ -92,3 +105,6 @@
 
         &:hover
             background-color: $color-grey-light
+
+
+

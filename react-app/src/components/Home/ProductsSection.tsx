@@ -3,9 +3,9 @@ import React from 'react';
 import ProductCard from '../ProductCard/ProductCard';
 import OutlineButton from '../Buttons/OutlineButton';
 
-const Products = (): JSX.Element => {
+const ProductsSection = (): JSX.Element => {
     return (
-        <div className="products">
+        <section className="products">
             <div className="products__box">
                 <div className="products__title">
                     <h2 className="heading-secondary">Discover Our Best Products</h2>
@@ -27,8 +27,8 @@ const Products = (): JSX.Element => {
             <div className="products__button-box">
                 <OutlineButton content="See all products" />
             </div>
-        </div>
+        </section>
     );
 };
 
-export default Products;
+export default ProductsSection;

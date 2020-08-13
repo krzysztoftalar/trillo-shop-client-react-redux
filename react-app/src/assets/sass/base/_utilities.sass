@@ -7,7 +7,7 @@
 // ---------------------------------
 .u-margin-bottom-xs
     margin-bottom: 1.5rem !important
-    
+
 .u-margin-bottom-s
     margin-bottom: 3rem !important
 
@@ -21,8 +21,16 @@
 // ---------------------------------
 .u-display-none-l
     @include respond-to(L)  // 1200px
-        display: none
+        display: none !important
+
+.u-display-none-m
+    @include respond-to(M)  // 1000px
+        display: none !important
+
+.u-display-none-s
+    @include respond-to(S)  // 800px
+        display: none !important
 
 .u-display-none-xs
     @include respond-to(XS) // 600px
-        display: none
+        display: none !important

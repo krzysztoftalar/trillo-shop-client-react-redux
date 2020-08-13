@@ -1,12 +1,12 @@
 import React from 'react';
 import Timer from '../Timer/Timer';
 
-const Deal = (): JSX.Element => {
+const DealSection = (): JSX.Element => {
     const today = new Date();
     const countDownDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 3, 15, 0, 0);
 
     return (
-        <div className="deal">
+        <section className="deal">
             <div className="deal__main-box">
                 <div className="deal__small-box">
                     <div className="dash">
@@ -23,8 +23,8 @@ const Deal = (): JSX.Element => {
 
                 <Timer countDownDate={countDownDate} />
             </div>
-        </div>
+        </section>
     );
 };
 
-export default Deal;
+export default DealSection;
