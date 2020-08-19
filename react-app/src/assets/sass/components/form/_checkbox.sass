@@ -1,0 +1,46 @@
+.checkbox
+
+    &__input
+        display: none
+
+    &__label
+        position: relative
+        padding-left: 3rem
+        transition: color 0.3s
+        color: $color-grey-dark
+        font-size: $default-font-size
+        cursor: pointer
+
+    &__btn
+        display: flex
+        position: absolute
+        top: 0
+        left: 0
+        align-items: center
+        justify-content: center
+        width: 2rem
+        height: 2rem
+        transition: border-color 0.3s, background-color 0.3s
+        border: 1px solid $color-grey-light
+        background-color: $color-grey-light
+
+        &::after
+            content: ''
+            display: inline-block
+            width: 1.3rem
+            height: 1.3rem
+            transition: opacity 0.3s
+            opacity: 0
+            background: url('../img/SVG/checkmark.svg') no-repeat center
+            background-size: cover
+
+    // Radio button click
+    &__input:checked ~ &__label
+        color: $color-primary
+
+    &__input:checked ~ &__label &__btn
+        border-color: $color-primary
+        background-color: transparent
+
+    &__input:checked ~ &__label &__btn::after
+        opacity: 1

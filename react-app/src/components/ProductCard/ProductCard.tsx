@@ -27,13 +27,21 @@ const ProductCard = (): JSX.Element => {
 
             <Slider dimensions={size} activeIndex={activeIndex} images={images} />
 
-            <button onClick={() => prevImage()} className="slider__btn slider__btn--prev" type="button">
+            <button
+                onClick={() => prevImage()}
+                className="slider__btn slider__btn--prev"
+                type="button"
+            >
                 <svg className="slider__btn-icon slider__btn-icon--prev">
                     <use xlinkHref={`${svg}#icon-chevron-down`} />
                 </svg>
             </button>
 
-            <button onClick={() => nextImage()} className="slider__btn slider__btn--next" type="button">
+            <button
+                onClick={() => nextImage()}
+                className="slider__btn slider__btn--next"
+                type="button"
+            >
                 <svg className="slider__btn-icon slider__btn-icon--next">
                     <use xlinkHref={`${svg}#icon-chevron-down`} />
                 </svg>

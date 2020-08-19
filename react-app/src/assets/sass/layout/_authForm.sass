@@ -1,0 +1,48 @@
+.authForm
+    display: grid
+    position: absolute
+    top: 0
+    right: 0
+    grid-template-rows: min-content 1fr
+    width: 60rem
+    height: 100%
+    background-color: $color-white
+    box-shadow: 0 0 3rem 0 rgba(0, 0, 0, 0.1)
+    color: $color-primary
+
+    @include respond-to(XS)
+        width: 100vw
+
+    &__header-box
+        display: flex
+        align-items: flex-end
+        padding: 3rem 6rem
+
+        @include respond-to(L)
+            padding: 2rem 4rem
+
+        @include respond-to(S)
+            padding: 0 2rem
+
+        & .hamburger-btn
+            margin-right: -1rem
+            transform: translateY(25%)
+
+    &__content-box
+        height: 100%
+        padding: 0 6rem
+        overflow-y: auto
+
+        @include respond-to(L)
+            padding: 0 4rem
+
+        @include respond-to(S)
+            padding: 2rem 2rem 0
+
+    &__header
+        flex: 1
+        font-size: 1.8rem
+
+    &__text
+        font-size: 1.3rem
+        font-weight: 700

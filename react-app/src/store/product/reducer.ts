@@ -1,6 +1,13 @@
 import { Reducer } from 'redux';
 // import types
-import { GET_PRODUCT, GET_PRODUCTS, ProductActionTypes, ProductState, SET_PAGE, SET_PREDICATE } from './types';
+import {
+    GET_PRODUCT,
+    GET_PRODUCTS,
+    ProductActionTypes,
+    ProductState,
+    SET_PAGE,
+    SET_PREDICATE,
+} from './types';
 
 export const INITIAL_STATE: ProductState = {
     products: [],
@@ -10,7 +17,10 @@ export const INITIAL_STATE: ProductState = {
     pageIndex: 0,
 };
 
-export const ProductReducer: Reducer<ProductState, ProductActionTypes> = (state = INITIAL_STATE, action) => {
+export const ProductReducer: Reducer<ProductState, ProductActionTypes> = (
+    state = INITIAL_STATE,
+    action
+) => {
     switch (action.type) {
         case GET_PRODUCTS: {
             const { products, productsCount } = action.payload;

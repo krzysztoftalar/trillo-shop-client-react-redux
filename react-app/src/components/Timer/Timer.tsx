@@ -8,9 +8,12 @@ interface IProps {
 }
 
 const Timer: React.FC<IProps> = ({ countDownDate }: IProps): JSX.Element => {
-    const [timeLeft, setTimeLeft] = useState<{ days: number; hours: number; mins: number; secs: number }>(
-        calculateTimeLeft(countDownDate)
-    );
+    const [timeLeft, setTimeLeft] = useState<{
+        days: number;
+        hours: number;
+        mins: number;
+        secs: number;
+    }>(calculateTimeLeft(countDownDate));
 
     useInterval(() => {
         setTimeLeft(calculateTimeLeft(countDownDate));

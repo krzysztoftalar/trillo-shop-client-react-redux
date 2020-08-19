@@ -28,7 +28,49 @@
             background-color: transparent
             color: $color-white
 
-// Underline button
+// Button as link
+// -----------------------------------------
+.btn-link
+    position: relative
+    width: fit-content
+    padding: 1.5rem 0
+    border: none
+    background-color: $color-white
+    font-family: inherit
+    font-size: $default-font-size
+    cursor: pointer
+
+    &--small
+        padding: 1rem 0
+        font-size: 1.4rem
+
+    &:focus,
+    &:active
+        outline: none
+
+.full-underline
+    &:hover::before
+        transform: scaleX(1)
+        transform-origin: 0 50%
+
+    &::before
+        content: ''
+        display: inline-block
+        position: absolute
+        bottom: 0.3rem
+        left: 0
+        width: 100%
+        height: 0.5px
+        transform: scaleX(0)
+        transform-origin: 100% 50%
+        transition: transform 0.3s
+        background-color: currentColor
+
+    &--small
+        &::before
+            bottom: 0.5rem
+
+// Half underline button
 // -----------------------------------------
 .btn-underline
     position: relative
@@ -36,7 +78,7 @@
     padding: 1rem 0
     border: none
     background-color: transparent
-    font-size: 1.5rem
+    font-size: $small-font-size
     cursor: pointer
 
     &:hover::before
@@ -164,3 +206,5 @@
     &--open &__icon::after
         top: 0
         transform: rotate(-135deg)
+
+

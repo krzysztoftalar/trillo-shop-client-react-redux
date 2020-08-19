@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 // Imports from src
 import HamburgerButton from '../Buttons/HamburgerButton';
 import Navigation from '../Navigation/Navigation';
@@ -7,13 +8,24 @@ import accountLinks from '../../app/options/accountLinks';
 import SearchForm from '../Forms/SearchForm';
 import NavIconBox from '../Navigation/NavIconBox';
 import { icons } from '../../app/options/navIcons';
+import AuthForm from '../User/Forms/AuthForm';
+import { RootState } from '../../store/rootState';
+import { handleModal, handleSideDrawer } from '../../store/ui/action';
+import { checkIfIsLoggedIn } from '../../store/user/selectors';
+import { logout } from '../../store/user/action';
 
-interface IProps {
-    setOpen: (open: boolean) => void;
-    open: boolean;
+interface StateProps {
+    openSideDrawer: boolean;
 }
 
-const Header: React.FC<IProps> = ({ setOpen, open }: IProps): JSX.Element => {
+const Header = (): JSX.Element => {
+    const dispatch = useDispatch();
+
+    const { openSideDrawer } = useSelector<RootState, StateProps>((state) => {
+        return { openSideDrawer: state.ui.openSideDrawer };
+    });
+    const isLoggedIn = useSelector(checkIfIsLoggedIn());
+
     // Classes for styling Navigation component
     const navProps = {
         ul: 'navigation--col navigation--box',
@@ -21,13 +33,14 @@ const Header: React.FC<IProps> = ({ setOpen, open }: IProps): JSX.Element => {
         a: 'navigation__link--box',
     };
 
-    const isLoggedIn = true;
-
     return (
         <header className="header">
             {/* -------- Hamburger button box -------- */}
             <div className="header__hamburger-box">
-                <HamburgerButton setOpen={setOpen} open={open} />
+                <HamburgerButton
+                    handleHamburger={() => dispatch(handleSideDrawer())}
+                    open={openSideDrawer}
+                />
             </div>
 
             {/* -------- Left box -------- */}
@@ -44,21 +57,35 @@ const Header: React.FC<IProps> = ({ setOpen, open }: IProps): JSX.Element => {
                 {/* -------- Sign In -------- */}
                 {!isLoggedIn && (
                     <div className="u-display-none-l">
-                        <a href="/" className="header__account-link ">
+                        <button
+                            onClick={() => dispatch(handleModal(<AuthForm />))}
+                            className="header__account-link"
+                            type="button"
+                        >
                             Sign In
-                        </a>
+                        </button>
                     </div>
                 )}
 
                 {/* -------- My Account box -------- */}
                 {isLoggedIn && (
                     <div className="header__account u-display-none-l">
-                        <a href="/" className="header__account-link">
+                        <button className="header__account-link" type="button">
                             My Account
-                        </a>
+                        </button>
 
                         <div className="header__account-links">
                             <Navigation props={navProps} links={accountLinks} />
+
+                            <div className="header__account-links-box">
+                                <button
+                                    onClick={() => dispatch(logout())}
+                                    className="btn-link btn-link--small full-underline"
+                                    type="button"
+                                >
+                                    Logout
+                                </button>
+                            </div>
                         </div>
                     </div>
                 )}

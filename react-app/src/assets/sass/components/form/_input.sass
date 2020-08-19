@@ -1,0 +1,57 @@
+.input
+    width: 100%
+    padding: 1.4rem 0
+    transition: border-bottom-color 0.4s
+    border: none
+    border-bottom: 2px solid $color-grey-light
+    background-color: $color-white
+    color: inherit
+    font-family: inherit
+    font-size: $default-font-size
+    filter: none
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+        transition: background-color 5000s ease-in-out 0s
+
+    &:hover,
+    &:focus
+        border-bottom-color: $color-primary
+
+    &:focus
+        outline: none
+
+    &:invalid
+        box-shadow: none
+        border-bottom-color: $color-red
+
+    &__label
+        display: inline-block
+        position: relative
+        width: 100%
+
+    &__placeholder
+        position: absolute
+        top: 0
+        left: 0
+        padding-top: 1.5rem
+        transition: transform 0.4s, color 0.4s, font-size 0.4s
+        font-size: $default-font-size
+
+    &__error
+        margin-top: 1rem
+        animation: fadeIn 0.3s
+        color: $color-red
+        font-size: $default-font-size
+
+        &::before
+            display: inline
+            content: '⚠ '
+
+    // Move placeholder up while input is focus
+    &:focus + &__placeholder,
+    &:not(:placeholder-shown) + &__placeholder
+        transform: translateY(-2.5rem)
+        color: $color-grey-dark
+        font-size: 1.3rem

@@ -11,8 +11,8 @@ const ProductsSection = (): JSX.Element => {
                     <h2 className="heading-secondary">Discover Our Best Products</h2>
                 </div>
                 <p className="products__description">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore
-                    et dolore magna aliqua.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                    incididunt ut labore et dolore magna aliqua.
                 </p>
             </div>
 

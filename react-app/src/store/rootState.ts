@@ -1,9 +1,13 @@
 import { ProductState } from './product/types';
-import { AsyncActionState } from './asyncAction/types';
 import { CategoryState } from './category/types';
+import { UserState } from './user/types';
+import { UIState } from './ui/types';
+import { ErrorState } from './error/type';
 
 export interface RootState {
-    loading: AsyncActionState;
+    user: UserState;
     product: ProductState;
     category: CategoryState;
+    ui: UIState;
+    error: ErrorState;
 }

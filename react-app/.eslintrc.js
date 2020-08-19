@@ -28,13 +28,25 @@ module.exports = {
         createDefaultProgram: true,
     },
     rules: {
+        'no-param-reassign': 'off',
+        'import/prefer-default-export': 'off',
+        'jsx-a11y/label-has-for': [
+            2,
+            {
+                components: ['Label'],
+                required: {
+                    some: ['nesting', 'id'],
+                },
+                allowChildren: false,
+            },
+        ],
         'no-console': 'off',
         'prettier/prettier': [
             'error',
             {
                 tabWidth: 4,
                 singleQuote: true,
-                printWidth: 120,
+                printWidth: 80,
             },
         ],
     },

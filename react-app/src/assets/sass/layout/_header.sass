@@ -58,33 +58,30 @@
 
     &__account-link
         padding: 2rem
+        border: none
+        background-color: transparent
+        color: $color-primary
+        font-family: inherit
+        font-size: 1.4rem
+        text-decoration: none
+        cursor: pointer
 
-        &:link,
-        &:visited
-            display: inline-block
-            color: $color-primary
-            font-size: 1.4rem
-            text-decoration: none
+        &:focus,
+        &:active
+            outline: none
 
     &__account-links
+        display: grid
         position: absolute
         z-index: 100
-        top: 3.1rem
         left: -2rem
         width: 18rem
-        padding-top: 6rem
+        padding-top: 3.35rem
         transform: translateY(2rem)
         transition: transform 0.5s, opacity 0.4s
         opacity: 0
         pointer-events: none
 
-
-
-
-
-
-
-
-
-
-
+        &-box
+            padding: 0 4rem 3rem
+            background-color: $color-white

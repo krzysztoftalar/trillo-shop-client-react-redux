@@ -7,7 +7,13 @@ const NavigationIcons = (): JSX.Element => {
     return (
         <>
             {socialLinks.map((item) => (
-                <a href={item.link} className="sidebar__link" key={item.icon} target="_blank" rel="noopener noreferrer">
+                <a
+                    key={item.icon}
+                    href={item.link}
+                    className="sidebar__link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
                     <svg className="sidebar__icon">
                         <use xlinkHref={`${svg}#icon-${item.icon}`} />
                     </svg>

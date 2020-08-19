@@ -12,12 +12,17 @@ interface IProps {
         buttonText: string;
     };
     content?: JSX.Element;
-    nextImage: () => void;
+    handleNextImage: () => void;
     setAnimating: (animating: boolean) => void;
     animating: boolean;
 }
 
-const CarouselItem: React.FC<IProps> = ({ props, nextImage, setAnimating, animating }: IProps): JSX.Element => {
+const CarouselItem: React.FC<IProps> = ({
+    props,
+    handleNextImage,
+    setAnimating,
+    animating,
+}: IProps): JSX.Element => {
     const fadeIn = animating ? 'fadeIn' : '';
     const { src } = props;
 
@@ -32,7 +37,7 @@ const CarouselItem: React.FC<IProps> = ({ props, nextImage, setAnimating, animat
 
             <CarouselContent props={props} animating={animating} />
 
-            <SquareButton handleClick={nextImage} />
+            <SquareButton handleClick={handleNextImage} />
         </>
     );
 };

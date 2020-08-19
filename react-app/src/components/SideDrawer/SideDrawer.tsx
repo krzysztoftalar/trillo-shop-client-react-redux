@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 // Imports from src
 import SearchForm from '../Forms/SearchForm';
 import headerLinks from '../../app/options/headerLinks';
@@ -10,13 +11,18 @@ import NavigationIcons from '../Home/NavigationIcons';
 import Dropdown from '../Dropdown/Dropdown';
 import currencies from '../../app/options/currencies';
 import Header from '../Header/Header';
+import { RootState } from '../../store/rootState';
+import useBodyClass from '../../app/customHooks/useBodyClass';
+import { checkIfIsLoggedIn } from '../../store/user/selectors';
+import { logout } from '../../store/user/action';
+import { handleModal, handleSideDrawer } from '../../store/ui/action';
+import AuthForm from '../User/Forms/AuthForm';
 
-interface IProps {
-    setOpen: (open: boolean) => void;
-    open: boolean;
-}
+const SideDrawer = (): JSX.Element => {
+    const dispatch = useDispatch();
+    const open = useSelector<RootState>((state) => state.ui.openSideDrawer);
+    const isLoggedIn = useSelector(checkIfIsLoggedIn());
 
-const SideDrawer: React.FC<IProps> = ({ setOpen, open }: IProps): JSX.Element => {
     // Classes for styling Navigation component
     const navProps = {
         ul: 'navigation--col',
@@ -24,10 +30,26 @@ const SideDrawer: React.FC<IProps> = ({ setOpen, open }: IProps): JSX.Element =>
         a: '',
     };
 
+    useBodyClass('overflow-hidden');
+
+    const handleLogout = () => {
+        dispatch(logout());
+        dispatch(handleSideDrawer());
+    };
+
+    const handleLogin = () => {
+        dispatch(handleSideDrawer());
+        dispatch(handleModal(<AuthForm />));
+    };
+
     return (
-        <div className={`side-drawer ${open ? 'side-drawer--open fadeIn--slow' : 'fadeOut'}`}>
+        <div
+            className={`side-drawer ${
+                open ? 'moveAndFadeInFromLeft' : 'moveAndFadeOutToLeft'
+            }`}
+        >
             <div className="side-drawer__mobile-header">
-                <Header setOpen={setOpen} open={open} />
+                <Header />
             </div>
 
             <SearchForm props="search__input--right-side" />
@@ -55,7 +77,38 @@ const SideDrawer: React.FC<IProps> = ({ setOpen, open }: IProps): JSX.Element =>
 
             <hr className="side-drawer__divider" />
 
-            <NavigationItem props={navProps} link={iconsText[2]} />
+            {/* <NavigationItem props={navProps} link={iconsText[2]} /> */}
+            {isLoggedIn ? (
+                <>
+                    <div className="side-drawer__btn-box">
+                        <button
+                            className="btn-link full-underline full-underline--small"
+                            type="button"
+                        >
+                            My Account
+                        </button>
+                    </div>
+                    <div className="side-drawer__btn-box">
+                        <button
+                            onClick={handleLogout}
+                            className="btn-link full-underline full-underline--small"
+                            type="button"
+                        >
+                            Sign Out
+                        </button>
+                    </div>
+                </>
+            ) : (
+                <div className="side-drawer__btn-box">
+                    <button
+                        onClick={handleLogin}
+                        className="btn-link full-underline full-underline--small"
+                        type="button"
+                    >
+                        Sign In
+                    </button>
+                </div>
+            )}
 
             <hr className="side-drawer__divider" />
 

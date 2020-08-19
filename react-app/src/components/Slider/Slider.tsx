@@ -9,7 +9,11 @@ interface IProps {
     activeIndex: number;
 }
 
-const Slider: React.FC<IProps> = ({ images, dimensions: { width, height }, activeIndex }: IProps): JSX.Element => {
+const Slider: React.FC<IProps> = ({
+    images,
+    dimensions: { width, height },
+    activeIndex,
+}: IProps): JSX.Element => {
     return (
         <div className="slider">
             <div

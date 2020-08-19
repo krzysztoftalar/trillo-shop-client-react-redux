@@ -1,11 +1,11 @@
 import agent from '../../app/api/agent';
-import { errorActionAsync, startActionAsync, stopActionAsync } from '../asyncAction/action';
 import { GET_PRODUCT, GET_PRODUCTS, SET_PAGE, SET_PREDICATE, SetPageAction } from './types';
-import setParams from '../../app/helpers/paramsHelper';
+import setParams from '../../app/helpers/setParams';
 import { ThunkResult } from '../../app/helpers/reduxHelpers';
+import { startAction, stopAction } from '../ui/action';
 
 export const getProducts = (): ThunkResult => async (dispatch, getState) => {
-    dispatch(startActionAsync());
+    dispatch(startAction(GET_PRODUCTS));
 
     try {
         const { pageIndex, predicate } = getState().product;
@@ -13,14 +13,14 @@ export const getProducts = (): ThunkResult => async (dispatch, getState) => {
         const products = await agent.Products.list(setParams(pageIndex, predicate));
         dispatch({ type: GET_PRODUCTS, payload: products });
     } catch (error) {
-        dispatch(errorActionAsync(error));
+        // dispatch(errorActionAsync(error));
     } finally {
-        dispatch(stopActionAsync());
+        dispatch(stopAction(GET_PRODUCTS));
     }
 };
 
 export const getProduct = (id: number): ThunkResult => async (dispatch) => {
-    dispatch(startActionAsync());
+    dispatch(startAction(GET_PRODUCT));
 
     try {
         const product = await agent.Products.details(id);
@@ -29,9 +29,9 @@ export const getProduct = (id: number): ThunkResult => async (dispatch) => {
             payload: product,
         });
     } catch (error) {
-        dispatch(errorActionAsync(error));
+        // dispatch(errorActionAsync(error));
     } finally {
-        dispatch(stopActionAsync());
+        dispatch(stopAction(GET_PRODUCT));
     }
 };
 

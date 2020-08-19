@@ -25,7 +25,7 @@
     100%
         opacity: 0
 
-// Slide in from top animation
+// Move in from top animation
 // ---------------------------------
 .moveInFromTop
     animation: moveInFromTop 1s
@@ -35,9 +35,9 @@
         transform: translateY(-100%)
 
     100%
-        transform: translate(0)
+        transform: translateX(0)
 
-// Slide in from left animation
+// Move in from left animation
 // ---------------------------------
 .moveInFromLeft
     animation: moveInFromLeft 1s
@@ -47,4 +47,68 @@
         transform: translateX(-100%)
 
     100%
-        transform: translate(0)
+        transform: translateX(0)
+
+// Move out to left animation
+// ---------------------------------
+.moveOutToLeft
+    animation: moveOutToLeft 1s
+
+@keyframes moveOutToLeft
+    0%
+        transform: translateX(0)
+
+    100%
+        transform: translateX(-100%)
+
+// Move and fade in from left animation
+// ---------------------------------
+.moveAndFadeInFromLeft
+    animation: moveInFromLeft 0.5s, fadeIn 0.5s
+
+// Move and fade out to left animation
+// ---------------------------------
+.moveAndFadeOutToLeft
+    animation: moveOutToLeft 0.5s, fadeOut 0.5s
+
+// Move in from right animation
+// ---------------------------------
+.moveInFromRight
+    animation: moveInFromRight 1s
+
+@keyframes moveInFromRight
+    0%
+        transform: translateX(100%)
+
+    100%
+        transform: translateX(0)
+
+// Move out to right animation
+// ---------------------------------
+.moveOutToRight
+    animation: moveOutToRight 1s
+
+@keyframes moveOutToRight
+    0%
+        transform: translateX(0)
+
+    100%
+        transform: translateX(100%)
+
+// Move and fade in from right animation
+// ---------------------------------
+.moveAndFadeInFromRight
+    animation: moveInFromRight 0.5s, fadeIn 0.5s
+
+// Move and fade out to right animation
+// ---------------------------------
+.moveAndFadeOutToRight
+    animation: moveOutToRight 0.5s, fadeOut 0.5s
+
+// Spinner
+@keyframes spinner
+    from
+        transform: rotate(0)
+
+    to
+        transform: rotate(360deg)

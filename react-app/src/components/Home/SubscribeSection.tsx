@@ -14,7 +14,12 @@ const SubscribeSection = (): JSX.Element => {
             </p>
 
             <form action="#" className="subscribe__form">
-                <input className="subscribe__input" type="email" required placeholder="Your email address" />
+                <input
+                    className="subscribe__input"
+                    type="email"
+                    required
+                    placeholder="Your email address"
+                />
                 <button className="subscribe__button" type="submit">
                     Subscribe
                 </button>

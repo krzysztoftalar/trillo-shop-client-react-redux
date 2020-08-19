@@ -48,4 +48,8 @@ export interface SetPageAction extends Action {
     payload: number;
 }
 
-export type ProductActionTypes = GetProductsAction | GetProductAction | SetPredicateAction | SetPageAction;
+export type ProductActionTypes =
+    | GetProductsAction
+    | GetProductAction
+    | SetPredicateAction
+    | SetPageAction;

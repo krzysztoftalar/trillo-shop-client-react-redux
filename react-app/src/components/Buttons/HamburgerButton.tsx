@@ -1,14 +1,14 @@
 import React from 'react';
 
 interface IProps {
-    setOpen: (open: boolean) => void;
+    handleHamburger: () => void;
     open: boolean;
 }
 
-const HamburgerButton: React.FC<IProps> = ({ setOpen, open }: IProps): JSX.Element => {
+const HamburgerButton: React.FC<IProps> = ({ handleHamburger, open }: IProps): JSX.Element => {
     return (
         <button
-            onClick={() => setOpen(!open)}
+            onClick={handleHamburger}
             className={`hamburger-btn ${open ? 'hamburger-btn--open' : ''}`}
             type="button"
         >

@@ -3,7 +3,14 @@ import Timer from '../Timer/Timer';
 
 const DealSection = (): JSX.Element => {
     const today = new Date();
-    const countDownDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 3, 15, 0, 0);
+    const countDownDate = new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate() + 3,
+        15,
+        0,
+        0
+    );
 
     return (
         <section className="deal">

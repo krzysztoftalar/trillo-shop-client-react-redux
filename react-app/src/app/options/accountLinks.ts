@@ -14,9 +14,6 @@ const accountLinks = [
     {
         text: 'Wishlist',
     },
-    {
-        text: 'Logout',
-    },
 ];
 
 export default accountLinks;

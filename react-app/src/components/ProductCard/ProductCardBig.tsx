@@ -10,7 +10,9 @@ interface IProps {
     };
 }
 
-const ProductCardBig: React.FC<IProps> = ({ product: { img, title, price, category } }: IProps): JSX.Element => {
+const ProductCardBig: React.FC<IProps> = ({
+    product: { img, title, price, category },
+}: IProps): JSX.Element => {
     return (
         <div className="productCardBig">
             <img className="productCardBig__img" src={img} alt="Product" />

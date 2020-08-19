@@ -1,24 +1,11 @@
 import React from 'react';
-// Imports from src
-import useWindowSize from '../../app/customHooks/useWindowSize';
 
 interface IProps {
-    setOpen: (open: boolean) => void;
-    open: boolean;
+    handleBackdrop: () => void;
 }
 
-const Backdrop: React.FC<IProps> = ({ setOpen, open }: IProps): JSX.Element => {
-    const width = useWindowSize();
-
-    const renderBackdrop = () => {
-        if (open && width > 400 && width < 1200) {
-            return <div onClick={() => setOpen(false)} className="backdrop" />;
-        }
-
-        return <></>;
-    };
-
-    return renderBackdrop();
+const Backdrop: React.FC<IProps> = ({ handleBackdrop }: IProps): JSX.Element => {
+    return <div onClick={handleBackdrop} className="backdrop" />;
 };
 
 export default Backdrop;

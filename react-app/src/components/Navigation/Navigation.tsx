@@ -11,7 +11,10 @@ interface IProps {
     }[];
 }
 
-const Navigation: React.FC<IProps> = ({ props, links }: IProps): JSX.Element => (
+const Navigation: React.FC<IProps> = ({
+    props,
+    links,
+}: IProps): JSX.Element => (
     <ul className={`navigation ${props?.ul}`}>
         {links.map((item) => (
             <li className={`navigation__item ${props?.li}`} key={item.text}>

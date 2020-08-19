@@ -4,11 +4,11 @@ import NavigationIcons from './NavigationIcons';
 
 const Sidebar = (): JSX.Element => {
     return (
-        <div className="sidebar">
+        <aside className="sidebar">
             <div className="sidebar__icons-box">
                 <NavigationIcons />
             </div>
-        </div>
+        </aside>
     );
 };
 
