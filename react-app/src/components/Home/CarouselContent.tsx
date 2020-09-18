@@ -22,11 +22,16 @@ const CarouselContent: React.FC<IProps> = ({
         <>
             <div className="header-content__box">
                 <div className="header-content__box--overflow">
-                    <h2 className={`heading-primary ${moveInFromTop}`}>{header}</h2>
+                    <h2 className={`heading-primary ${moveInFromTop}`}>
+                        {header}
+                    </h2>
                 </div>
 
                 <div className="header-content__box--overflow">
-                    <button className={`btn btn--white ${moveInFromTop}`} type="button">
+                    <button
+                        className={`btn btn--white ${moveInFromTop}`}
+                        type="button"
+                    >
                         {buttonText}
                     </button>
                 </div>

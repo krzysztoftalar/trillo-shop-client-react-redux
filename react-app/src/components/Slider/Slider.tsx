@@ -18,7 +18,11 @@ const Slider: React.FC<IProps> = ({
         <div className="slider">
             <div
                 className="slider__wrapper"
-                style={{ transform: `translateX(-${activeIndex * (100 / images.length)}%)` }}
+                style={{
+                    transform: `translateX(-${
+                        activeIndex * (100 / images.length)
+                    }%)`,
+                }}
             >
                 {images.map((img) => (
                     <img

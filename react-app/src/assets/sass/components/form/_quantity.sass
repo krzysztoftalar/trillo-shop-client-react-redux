@@ -1,0 +1,29 @@
+.quantity
+    display: flex
+    transition: border-color 0.3s
+    border: 1px solid $color-grey-light-2
+
+    &:hover
+        border-color: $color-primary
+
+    &__btn
+        padding: 1.5rem 2rem
+        background-color: transparent
+
+        &:hover &-icon
+            fill: $color-primary
+
+    &__btn-icon
+        width: 1.2rem
+        height: 1.2rem
+        transition: fill 0.3s
+        fill: $color-grey-dark
+
+    &__input
+        -moz-appearance: textfield
+        width: 3.5rem
+        border: none
+        background: 0 0
+        font-size: $small-font-size
+        font-weight: 700
+        text-align: center

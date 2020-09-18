@@ -1,0 +1,46 @@
+.social-pill
+    display: flex
+    position: relative
+    align-items: center
+    justify-content: center
+    width: 5rem
+    height: 5rem
+    border-radius: 50%
+    background-color: $color-primary
+    cursor: pointer
+
+    &:hover &__links-box
+        z-index: 1
+        width: 20rem
+
+    &:hover &__links-box &__link
+        transform: translateX(0)
+        opacity: 1
+
+    &__links-box
+        display: flex
+        position: absolute
+        z-index: -1
+        top: 0
+        left: 0
+        align-items: center
+        width: 5rem
+        height: 5rem
+        transition: width 0.1s ease-in
+        border-radius: 25px
+        background-color: $color-primary
+
+    &__link
+        transition: transform 0.3s ease-in, opacity 0.3s ease-in
+        opacity: 0
+
+        &:nth-child(2),
+        &:nth-child(3),
+        &:nth-child(4)
+            transform: translateX(-1rem)
+
+    &__icon
+        width: 5rem
+        height: 5rem
+        padding: 1.5rem
+        fill: $color-white

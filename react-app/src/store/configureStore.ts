@@ -8,7 +8,9 @@ import { RootAction } from './rootAction';
 
 const store = createStore<RootState, RootAction, unknown, unknown>(
     reducers,
-    composeWithDevTools(applyMiddleware(thunk as ThunkMiddleware<RootState, RootAction>))
+    composeWithDevTools(
+        applyMiddleware(thunk as ThunkMiddleware<RootState, RootAction>)
+    )
 );
 
 export default store;

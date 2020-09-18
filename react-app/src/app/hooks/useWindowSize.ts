@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 
 const getWidth = () =>
-    window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+    window.innerWidth ||
+    document.documentElement.clientWidth ||
+    document.body.clientWidth;
 
 const useWindowSize = (): number => {
     const [width, setWidth] = useState(getWidth());

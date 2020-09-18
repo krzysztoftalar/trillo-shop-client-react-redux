@@ -1,6 +1,9 @@
 ﻿import React, { useCallback, useEffect, useRef } from 'react';
 
-const useInterval = (callback: React.EffectCallback, delay: number): (() => void) => {
+const useInterval = (
+    callback: React.EffectCallback,
+    delay: number
+): (() => void) => {
     const intervalRef = useRef() as React.MutableRefObject<number>;
     const savedCallback = useRef(callback);
 
@@ -11,7 +14,10 @@ const useInterval = (callback: React.EffectCallback, delay: number): (() => void
     const reset = useCallback(() => {
         window.clearInterval(intervalRef.current);
 
-        intervalRef.current = window.setInterval(() => savedCallback.current(), delay);
+        intervalRef.current = window.setInterval(
+            () => savedCallback.current(),
+            delay
+        );
     }, [delay, intervalRef]);
 
     // eslint-disable-next-line consistent-return

@@ -12,6 +12,7 @@ export const selectLoader = (...actionsToCheck: string[]) => {
 export const selectLoaderById = (actionsToCheck: string) => {
     return createSelector(
         [selectLoaders],
-        (actions) => actions.find((action) => action.name === actionsToCheck)?.id
+        (actions) =>
+            actions.find((action) => action.name === actionsToCheck)?.id
     );
 };

@@ -30,7 +30,9 @@ const SearchForm: React.FC<IProps> = ({ props }: IProps): JSX.Element => {
         <form action="#" className="search" ref={form}>
             <input
                 type="text"
-                className={`search__input ${open ? `search__input--active` : ''} ${props}`}
+                className={`search__input ${
+                    open ? `search__input--active` : ''
+                } ${props}`}
                 placeholder="Search"
                 ref={textInput}
             />

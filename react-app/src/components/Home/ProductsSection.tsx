@@ -8,11 +8,14 @@ const ProductsSection = (): JSX.Element => {
         <section className="products">
             <div className="products__box">
                 <div className="products__title">
-                    <h2 className="heading-secondary">Discover Our Best Products</h2>
+                    <h2 className="heading-secondary">
+                        Discover Our Best Products
+                    </h2>
                 </div>
                 <p className="products__description">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                    incididunt ut labore et dolore magna aliqua.
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                    sed do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua.
                 </p>
             </div>
 

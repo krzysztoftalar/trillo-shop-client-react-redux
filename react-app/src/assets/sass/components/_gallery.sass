@@ -1,0 +1,79 @@
+.gallery
+    display: flex
+    position: relative
+    align-items: center
+    width: 100%
+    height: 100%
+
+    &__btn-box
+        position: absolute
+
+    &__btn-num
+        display: flex
+        flex-direction: column
+        width: 6rem
+
+    &__btn
+        display: flex
+        align-items: center
+        background-color: transparent
+        color: $color-primary
+        font-size: $default-font-size
+        font-weight: 700
+
+        &:not(:last-child)
+            margin-bottom: 2rem
+
+        &::before
+            content: ''
+            display: inline-block
+            width: 0
+            height: 1px
+            margin-right: 1.5rem
+            transition: width 0.3s ease
+            background-color: $color-primary
+
+        &--active::before
+            width: 2rem
+
+    &__wrapper
+        visibility: hidden
+        z-index: -10
+        width: 100%
+        padding-left: 6rem
+
+    &__img
+        display: block
+        position: absolute
+        bottom: 0
+        left: 0
+        width: 100%
+        height: 100%
+        padding-left: 6rem
+        object-fit: cover
+
+        &--fadeIn
+            animation: fadeIn 0.5s ease-in-out
+
+        &--fadeOut
+            animation: fadeOut 0.5s ease-in-out
+
+    // Media queries
+    @include respond-to(M)
+        &__img
+            padding-left: 0
+
+    @include respond-to(XS)
+        &__btn-box
+            bottom: 0
+            padding: 0 0 2rem 2rem
+
+        &__btn-circle
+            display: flex
+
+        &__btn-num
+            display: none
+
+    @include respond-to(XS-min)
+        &__btn-circle
+            display: none

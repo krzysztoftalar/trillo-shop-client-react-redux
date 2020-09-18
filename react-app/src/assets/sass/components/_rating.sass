@@ -1,0 +1,24 @@
+.rating
+    position: relative
+
+    &__max
+        display: block
+        fill: $color-grey-light-2
+
+    &__users
+        display: block
+        position: absolute
+        top: 0
+        left: 0
+        overflow: hidden
+        fill: $color-yellow
+        white-space: nowrap
+
+    &__star
+        display: inline-block
+        width: 1rem
+        height: 1rem
+        vertical-align: middle
+
+        &:not(:last-child)
+            margin-right: 5px

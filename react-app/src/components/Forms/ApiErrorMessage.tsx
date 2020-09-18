@@ -4,7 +4,9 @@ export interface IProps {
     apiErrors: { name: string; error: string | null };
 }
 
-const ApiErrorMessage: React.FC<IProps> = ({ apiErrors }: IProps): JSX.Element => {
+const ApiErrorMessage: React.FC<IProps> = ({
+    apiErrors,
+}: IProps): JSX.Element => {
     return (
         <div className="apiError">
             {apiErrors.error &&

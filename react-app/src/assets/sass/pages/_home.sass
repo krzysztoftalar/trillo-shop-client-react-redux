@@ -4,6 +4,7 @@
     display: grid
     grid-template-columns: [side-start] 6rem [side-end full-start] 6rem [center-start] repeat(8, [col-start] 1fr [col-end]) [center-end side-right-start] 6rem [side-right-end] 6rem [full-end]
     grid-template-rows: 12rem calc(100vh - 12rem) min-content 50vw
+    background-color: $color-white
 
     @include respond-to(L)
         grid-template-rows: 6rem calc(100vh - 6rem) min-content 60vw
@@ -107,7 +108,6 @@
     grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr))
     grid-gap: 5rem
     padding: 20rem 0
-    background-color: $color-white
 
     @include respond-to(L)
         grid-column: side-start / -1
@@ -228,8 +228,6 @@
         padding: 1.7rem 2rem
         transition: border 0.4s, padding 0.4s
         border: 1px solid $color-primary
-        color: inherit
-        font-family: inherit
         font-size: $small-font-size
 
         @include respond-to(L)
@@ -254,7 +252,6 @@
     &__left-card,
     &__right-card
         padding: 12rem 6rem
-        background-color: $color-white
 
         @include respond-to(L)
             padding: 12rem 4rem
@@ -346,5 +343,3 @@
         font-weight: 700
         text-decoration: none
         text-transform: uppercase
-
-

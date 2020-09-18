@@ -1,0 +1,241 @@
+// Product page container
+// ---------------------------------
+.product
+    display: grid
+    grid-template-columns: [side-start] 6rem [side-end full-start] 6rem [center-start] repeat(8, [col-start] 1fr [col-end]) [center-end side-right-start] 6rem [side-right-end] 6rem [full-end]
+    grid-template-rows: 12rem 8rem
+    background-color: #eef4e8
+
+    // Override styles
+    & .header
+        z-index: 50
+        grid-column: side-start / -1
+        padding-right: 6rem
+        transition: background-color 0.25s ease
+
+        &:hover
+            background-color: $color-white
+
+    // Main boxes
+    &__gallery-box
+        grid-column: full-start / col-end 5
+        grid-row: 1 / 4
+
+    &__summary-box
+        display: grid
+        grid-column: col-start 6 / center-end
+        grid-row: 3 / 4
+        grid-template-rows: repeat(6, min-content)
+        grid-gap: 1.5rem
+        padding: 0 0 5rem 5rem
+
+    &__social-box
+        grid-column: full-start / center-start
+        grid-row: 3 / 4
+        align-self: end
+        padding-bottom: 5rem
+
+        & .social-pill
+            margin-bottom: 1rem
+
+    // Sub boxes
+    &__rating-box
+        display: flex
+        align-items: center
+
+        & button
+            margin-left: 1.5rem
+
+    &__sizes-box &__text,
+    &__colors-box &__text
+        margin-bottom: 1rem
+
+    &__sizes-box,
+    &__colors-box
+        display: grid
+        grid-gap: 2rem
+
+    &__sizes-box
+        grid-template-columns: repeat(auto-fill, 3rem)
+        margin-bottom: 1rem
+
+    &__colors-box
+        grid-template-columns: repeat(auto-fill, 2.5rem)
+        margin-bottom: 4.5rem
+
+    &__meta-box
+        display: grid
+        grid-gap: 1rem
+        margin-top: 3rem
+
+    &__form
+        display: grid
+        grid-template-rows: repeat(2, max-content)
+        grid-gap: 1rem
+        margin-top: 2rem
+
+        & .btn-submit
+            margin-left: 2rem
+
+    &__form-qty-box
+        display: flex
+
+    // Elements
+    &__title
+        font-size: 3rem
+        font-weight: 400
+
+    &__text
+        font-size: 1.4rem
+        line-height: 1.5
+
+    &__review-btn,
+    &__btn-link
+        transition: color 0.3s, text-shadow 0.3s
+        background-color: transparent
+        font-weight: 700
+
+    &__review-btn
+        color: $color-grey-dark
+        font-size: 1.2rem
+        text-transform: capitalize
+
+        &:hover
+            color: $color-primary
+
+    &__btn-link
+        color: rgba($color-primary, 0.8)
+        font-size: 1.1rem
+        text-transform: uppercase
+
+        &:hover
+            color: $color-primary
+            text-shadow: 0 0 .5px $color-grey-dark, 0 0 .5px $color-grey-dark
+
+    &__price
+        margin-top: 1.5rem
+        font-size: 3rem
+
+    &__tag
+        display: inline-block
+        width: 8.5rem
+        color: $color-grey-dark
+        font-size: 1.1rem
+        text-transform: uppercase
+
+    &__btn-size,
+    &__btn-color
+        width: 3rem
+        height: 3rem
+
+    &__btn-size
+        padding-bottom: 1rem
+        transition: border-color 0.3s, color 0.3s
+        border-bottom: 2px solid transparent
+        background-color: transparent
+        color: $color-grey-dark
+        font-size: 1.4rem
+        font-weight: 700
+        text-align: center
+        text-transform: uppercase
+
+        &--active
+            border-color: $color-primary
+            color: $color-primary
+
+    &__btn-color
+        position: relative
+        width: 2.5rem
+        height: 2.5rem
+
+        &::after
+            content: ''
+            display: inline-block
+            position: absolute
+            bottom: -1.5rem
+            left: 0
+            width: 2.5rem
+            height: 1.5px
+            transition: background-color 0.3s
+            background-color: transparent
+
+        &--active::after
+            background-color: $color-primary
+
+    &__divider
+        margin: 3rem 0 0
+        border: none
+        border-bottom: $line
+
+    // Media queries
+    // ---------------------------------------------
+    @include respond-to(M-min)
+        &__divider
+            display: none
+
+    @include respond-to(L)
+        grid-template-rows: 6rem 8rem
+
+        & .header
+            padding-right: 0
+
+        &__gallery-box
+            grid-column: side-start / col-end 5
+            padding-left: 4rem
+
+        &__summary-box
+            grid-column: col-start 6 / -1
+            padding: 0 4rem 5rem 0
+
+        &__social-box
+            grid-column: side-start / side-end
+            padding-bottom: 2rem
+            padding-left: 4rem
+
+    @include respond-to(M)
+        &__gallery-box
+            grid-column: side-start / -1
+            grid-row: 2 / 4
+            padding: 0 4rem
+
+        &__summary-box
+            grid-column: side-start / -1
+            grid-row: 4 / 5
+            padding: 6rem 4rem 0
+            background-color: $color-white
+
+        &__social-box
+            grid-column: side-right-start / -1
+            justify-self: end
+            padding-right: 4rem
+            padding-bottom: 0
+            transform: translateY(50%)
+
+            & .social-pill
+                margin-bottom: 0
+
+    @include respond-to(S)
+        &__gallery-box
+            padding: 0 2rem
+
+        &__summary-box
+            padding: 6rem 2rem 0
+
+        &__social-box
+            padding-right: 2rem
+
+    @include respond-to(XS)
+        &__form-qty-box
+            flex-direction: column
+
+        &__form
+            & .btn-submit
+                margin-top: 2rem
+                margin-left: 0
+
+            & .quantity__input
+                flex: 1
+
+    @include respond-to(XXS)
+        &__summary-box
+            padding: 4rem 2rem 0

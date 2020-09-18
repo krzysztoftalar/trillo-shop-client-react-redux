@@ -15,7 +15,10 @@ export const INITIAL_STATE: UIState = {
     openSideDrawer: false,
 };
 
-export const UIReducer: Reducer<UIState, UIActionTypes> = (state = INITIAL_STATE, action) => {
+export const UIReducer: Reducer<UIState, UIActionTypes> = (
+    state = INITIAL_STATE,
+    action
+) => {
     switch (action.type) {
         case START_ACTION: {
             const { name, id } = action.payload;
@@ -31,7 +34,9 @@ export const UIReducer: Reducer<UIState, UIActionTypes> = (state = INITIAL_STATE
 
             return {
                 ...state,
-                loaderActions: [...state.loaderActions.filter((item) => item.name !== name)],
+                loaderActions: [
+                    ...state.loaderActions.filter((item) => item.name !== name),
+                ],
             };
         }
 

@@ -8,7 +8,9 @@ interface IProps {
     };
 }
 
-const NavIconBox: React.FC<IProps> = ({ props: { icon, number } }: IProps): JSX.Element => {
+const NavIconBox: React.FC<IProps> = ({
+    props: { icon, number },
+}: IProps): JSX.Element => {
     return (
         <a href="/" className="nav-icon__box">
             <svg className="nav-icon__icon">

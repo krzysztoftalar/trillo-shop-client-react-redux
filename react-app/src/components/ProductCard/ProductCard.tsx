@@ -2,8 +2,8 @@ import React, { MutableRefObject, useRef, useState } from 'react';
 // Imports from src
 import svg from '../../assets/img/sprite.svg';
 import Slider from '../Slider/Slider';
-import useDimensions from '../../app/customHooks/useDimensions';
-import images from '../../app/data/images';
+import useDimensions from '../../app/hooks/useDimensions';
+import { images } from '../../app/data/images';
 
 const ProductCard = (): JSX.Element => {
     const [activeIndex, setActiveIndex] = useState(0);
@@ -12,20 +12,31 @@ const ProductCard = (): JSX.Element => {
     const size = useDimensions(targetRef);
 
     const nextImage = () => {
-        const nextIndex = activeIndex === images.length - 1 ? 0 : activeIndex + 1;
+        const nextIndex =
+            activeIndex === images.length - 1 ? 0 : activeIndex + 1;
         setActiveIndex(nextIndex);
     };
 
     const prevImage = () => {
-        const nextIndex = activeIndex === 0 ? images.length - 1 : activeIndex - 1;
+        const nextIndex =
+            activeIndex === 0 ? images.length - 1 : activeIndex - 1;
         setActiveIndex(nextIndex);
     };
 
     return (
         <div className="productCard">
-            <img ref={targetRef} src={images[0].src} alt="" className="productCard__img" />
+            <img
+                ref={targetRef}
+                src={images[0].src}
+                alt=""
+                className="productCard__img"
+            />
 
-            <Slider dimensions={size} activeIndex={activeIndex} images={images} />
+            <Slider
+                dimensions={size}
+                activeIndex={activeIndex}
+                images={images}
+            />
 
             <button
                 onClick={() => prevImage()}

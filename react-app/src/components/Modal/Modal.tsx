@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 // Imports from src
 import { RootState } from '../../store/rootState';
-import useTimeOut from '../../app/customHooks/useTimeOut';
+import useTimeOut from '../../app/hooks/useTimeOut';
 import { handleModal } from '../../store/ui/action';
 
 const modalRoot = document.getElementById('modal-root') as HTMLElement;
@@ -30,7 +30,10 @@ const Modal = (): JSX.Element => {
 
     return ReactDOM.createPortal(
         <div className="modal">
-            <div onClick={() => dispatch(handleModal())} className="modal__backdrop" />
+            <div
+                onClick={() => dispatch(handleModal())}
+                className="modal__backdrop"
+            />
             {shouldRender && body}
         </div>,
         modalRoot

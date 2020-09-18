@@ -1,6 +1,6 @@
 ﻿import React, { useState } from 'react';
 // Imports from src
-import useInterval from '../../app/customHooks/useInterval';
+import useInterval from '../../app/hooks/useInterval';
 import calculateTimeLeft from '../../app/helpers/calculateTimeLeft';
 
 interface IProps {
@@ -23,8 +23,12 @@ const Timer: React.FC<IProps> = ({ countDownDate }: IProps): JSX.Element => {
         <div className="timer">
             {Object.entries(timeLeft).map(([key, value]) => (
                 <div className="timer__box" key={key}>
-                    <span className="timer__time">{value < 10 ? `0${value}` : value}</span>
-                    <span className="timer__label">{value === 1 ? key.slice(0, -1) : key}</span>
+                    <span className="timer__time">
+                        {value < 10 ? `0${value}` : value}
+                    </span>
+                    <span className="timer__label">
+                        {value === 1 ? key.slice(0, -1) : key}
+                    </span>
                 </div>
             ))}
         </div>

@@ -10,7 +10,10 @@ interface IProps {
 }
 
 const Dropdown: React.FC<IProps> = ({ options }: IProps): JSX.Element => {
-    const [current, setCurrent] = useState<{ id: number; value: string }>({ id: 0, value: '' });
+    const [current, setCurrent] = useState<{ id: number; value: string }>({
+        id: 0,
+        value: '',
+    });
     const [open, setOpen] = useState(false);
 
     useEffect(() => {

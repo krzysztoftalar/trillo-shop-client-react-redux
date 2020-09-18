@@ -5,7 +5,10 @@ interface IProps {
     open: boolean;
 }
 
-const HamburgerButton: React.FC<IProps> = ({ handleHamburger, open }: IProps): JSX.Element => {
+const HamburgerButton: React.FC<IProps> = ({
+    handleHamburger,
+    open,
+}: IProps): JSX.Element => {
     return (
         <button
             onClick={handleHamburger}

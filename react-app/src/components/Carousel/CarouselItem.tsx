@@ -4,38 +4,45 @@ import CarouselContent from '../Home/CarouselContent';
 import SquareButton from '../Buttons/SquareButton';
 
 interface IProps {
-    props: {
+    activeImage: {
         src: string;
         header: string;
         infoText: string;
         infoNum: string;
         buttonText: string;
     };
-    content?: JSX.Element;
+    prevImage: string;
     handleNextImage: () => void;
     setAnimating: (animating: boolean) => void;
     animating: boolean;
 }
 
 const CarouselItem: React.FC<IProps> = ({
-    props,
+    activeImage,
+    prevImage,
     handleNextImage,
     setAnimating,
     animating,
 }: IProps): JSX.Element => {
     const fadeIn = animating ? 'fadeIn' : '';
-    const { src } = props;
+    const fadeOut = animating ? 'fadeOut' : '';
 
     return (
         <>
             <img
-                src={src}
+                src={prevImage}
+                className={`carousel__img ${fadeOut}`}
+                alt="Collection"
+            />
+
+            <img
+                src={activeImage.src}
                 className={`carousel__img ${fadeIn}`}
                 onAnimationEnd={() => setAnimating(false)}
                 alt="Collection"
             />
 
-            <CarouselContent props={props} animating={animating} />
+            <CarouselContent props={activeImage} animating={animating} />
 
             <SquareButton handleClick={handleNextImage} />
         </>

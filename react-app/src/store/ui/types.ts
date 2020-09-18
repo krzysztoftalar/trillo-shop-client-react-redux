@@ -40,4 +40,8 @@ export interface HandleModalAction extends Action {
 export interface HandleSideDrawerAction extends Action {
     type: typeof HANDLE_SIDE_DRAWER;
 }
-export type UIActionTypes = StartAction | StopAction | HandleModalAction | HandleSideDrawerAction;
+export type UIActionTypes =
+    | StartAction
+    | StopAction
+    | HandleModalAction
+    | HandleSideDrawerAction;

@@ -1,5 +1,11 @@
 import agent from '../../app/api/agent';
-import { GET_PRODUCT, GET_PRODUCTS, SET_PAGE, SET_PREDICATE, SetPageAction } from './types';
+import {
+    GET_PRODUCT,
+    GET_PRODUCTS,
+    SET_PAGE,
+    SET_PREDICATE,
+    SetPageAction,
+} from './types';
 import setParams from '../../app/helpers/setParams';
 import { ThunkResult } from '../../app/helpers/reduxHelpers';
 import { startAction, stopAction } from '../ui/action';
@@ -10,7 +16,9 @@ export const getProducts = (): ThunkResult => async (dispatch, getState) => {
     try {
         const { pageIndex, predicate } = getState().product;
 
-        const products = await agent.Products.list(setParams(pageIndex, predicate));
+        const products = await agent.Products.list(
+            setParams(pageIndex, predicate)
+        );
         dispatch({ type: GET_PRODUCTS, payload: products });
     } catch (error) {
         // dispatch(errorActionAsync(error));
@@ -35,7 +43,9 @@ export const getProduct = (id: number): ThunkResult => async (dispatch) => {
     }
 };
 
-export const setPredicate = (key: string, value: string): ThunkResult => async (dispatch) => {
+export const setPredicate = (key: string, value: string): ThunkResult => async (
+    dispatch
+) => {
     dispatch({
         type: SET_PREDICATE,
         payload: {

@@ -3,9 +3,6 @@
 .fadeIn
     animation: fadeIn 1s
 
-    &--slow
-        animation: fadeIn 0.5s
-
 @keyframes fadeIn
     0%
         opacity: 0
@@ -16,7 +13,10 @@
 // Fade out animation
 // ---------------------------------
 .fadeOut
-    animation: fadeOut 0.5s
+    animation: fadeOut 1s
+
+    &--fast
+        animation: fadeOut 0.5s
 
 @keyframes fadeOut
     0%

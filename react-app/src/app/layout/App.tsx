@@ -6,6 +6,7 @@ import Home from '../../pages/home';
 import Modal from '../../components/Modal/Modal';
 import { getToken } from '../../store/user/selectors';
 import { getCurrentUser } from '../../store/user/action';
+import Product from '../../pages/product';
 
 const App = (): ReactElement => {
     const token = useSelector(getToken());
@@ -21,6 +22,7 @@ const App = (): ReactElement => {
         <>
             <Modal />
             <Home />
+            {/* <Product /> */}
         </>
     );
 };

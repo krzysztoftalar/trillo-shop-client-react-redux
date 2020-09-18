@@ -23,7 +23,10 @@ const DealSection = (): JSX.Element => {
 
                     <h2 className="heading-tertiary">Stay Warm</h2>
 
-                    <button className="btn-underline btn-underline--white" type="button">
+                    <button
+                        className="btn-underline btn-underline--white"
+                        type="button"
+                    >
                         Shop Now
                     </button>
                 </div>

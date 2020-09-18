@@ -29,7 +29,10 @@ const ProductCardBig: React.FC<IProps> = ({
 
                 <span className="productCardBig__price">{price}</span>
 
-                <button className="btn-underline btn-underline--white" type="button">
+                <button
+                    className="btn-underline btn-underline--white"
+                    type="button"
+                >
                     Shop Now
                 </button>
             </div>

@@ -10,7 +10,8 @@ const SubscribeSection = (): JSX.Element => {
 
             <p className="subscribe__description">
                 Signup to be the first to hear about exclusive deals,
-                <br className="u-display-none-m" /> special offers and upcoming collections
+                <br className="u-display-none-m" /> special offers and upcoming
+                collections
             </p>
 
             <form action="#" className="subscribe__form">
@@ -41,7 +42,9 @@ const SubscribeSection = (): JSX.Element => {
                 {renderSubscribeForm(' u-display-none-s')}
             </div>
 
-            <div className="subscribe__form-wrapper">{renderSubscribeForm()}</div>
+            <div className="subscribe__form-wrapper">
+                {renderSubscribeForm()}
+            </div>
         </>
     );
 };

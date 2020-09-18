@@ -12,7 +12,7 @@ import Dropdown from '../Dropdown/Dropdown';
 import currencies from '../../app/options/currencies';
 import Header from '../Header/Header';
 import { RootState } from '../../store/rootState';
-import useBodyClass from '../../app/customHooks/useBodyClass';
+import useBodyClass from '../../app/hooks/useBodyClass';
 import { checkIfIsLoggedIn } from '../../store/user/selectors';
 import { logout } from '../../store/user/action';
 import { handleModal, handleSideDrawer } from '../../store/ui/action';
@@ -20,7 +20,10 @@ import AuthForm from '../User/Forms/AuthForm';
 
 const SideDrawer = (): JSX.Element => {
     const dispatch = useDispatch();
-    const open = useSelector<RootState>((state) => state.ui.openSideDrawer);
+
+    const open = useSelector<RootState, boolean>(
+        (state) => state.ui.openSideDrawer
+    );
     const isLoggedIn = useSelector(checkIfIsLoggedIn());
 
     // Classes for styling Navigation component

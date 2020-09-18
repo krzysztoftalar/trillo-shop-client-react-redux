@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // Imports from src
 import HamburgerButton from '../../Buttons/HamburgerButton';
-import useBodyClass from '../../../app/customHooks/useBodyClass';
+import useBodyClass from '../../../app/hooks/useBodyClass';
 import { RootState } from '../../../store/rootState';
 import { handleModal } from '../../../store/ui/action';
 import LoginForm from './LoginForm';
@@ -27,12 +27,17 @@ const AuthForm = (): JSX.Element => {
 
     return (
         <div
-            className={`authForm ${openModal ? 'moveAndFadeInFromRight' : 'moveAndFadeOutToRight'}`}
+            className={`authForm ${
+                openModal ? 'moveAndFadeInFromRight' : 'moveAndFadeOutToRight'
+            }`}
         >
             <div className="authForm__header-box">
                 <h3 className="authForm__header">Sign in</h3>
                 <span className="authForm__text">Close</span>
-                <HamburgerButton handleHamburger={handleHamburger} open={openModal} />
+                <HamburgerButton
+                    handleHamburger={handleHamburger}
+                    open={openModal}
+                />
             </div>
 
             <div className="authForm__content-box">

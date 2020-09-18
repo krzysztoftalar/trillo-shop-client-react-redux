@@ -31,7 +31,9 @@ const Footer = (): JSX.Element => {
                         <NavigationIcons />
                     </div>
 
-                    <p className="footer__text">&copy; 2020 Trillo All rights reserved</p>
+                    <p className="footer__text">
+                        &copy; 2020 Trillo All rights reserved
+                    </p>
                 </div>
 
                 <div className="footer__right-items">
@@ -40,7 +42,11 @@ const Footer = (): JSX.Element => {
                         <Dropdown options={currencies} />
                     </div>
 
-                    <img src="./payments.png" alt="Payments options" className="footer__img" />
+                    <img
+                        src="./payments.png"
+                        alt="Payments options"
+                        className="footer__img"
+                    />
                 </div>
             </div>
         </footer>

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 // Imports from src
 import CarouselItem from './CarouselItem';
-import useInterval from '../../app/customHooks/useInterval';
+import useInterval from '../../app/hooks/useInterval';
+import usePrevState from '../../app/hooks/usePrevState';
 
 interface IProps {
     images: {
@@ -16,9 +17,11 @@ interface IProps {
 const Carousel: React.FC<IProps> = ({ images }: IProps): JSX.Element => {
     const [activeIndex, setActiveIndex] = useState(0);
     const [animating, setAnimating] = useState(true);
+    const prevIndex = usePrevState(activeIndex);
 
     const setNextImage = () => {
-        const nextIndex = activeIndex === images.length - 1 ? 0 : activeIndex + 1;
+        const nextIndex =
+            activeIndex === images.length - 1 ? 0 : activeIndex + 1;
 
         setActiveIndex(nextIndex);
         setAnimating(true);
@@ -36,7 +39,8 @@ const Carousel: React.FC<IProps> = ({ images }: IProps): JSX.Element => {
     return (
         <div className="carousel">
             <CarouselItem
-                props={images[activeIndex]}
+                activeImage={images[activeIndex]}
+                prevImage={images[prevIndex].src}
                 handleNextImage={handleNextImage}
                 setAnimating={setAnimating}
                 animating={animating}
