@@ -3,9 +3,15 @@ import React, { MutableRefObject, useRef, useState } from 'react';
 import svg from '../../assets/img/sprite.svg';
 import Slider from '../Slider/Slider';
 import useDimensions from '../../app/hooks/useDimensions';
-import { images } from '../../app/data/images';
+import { IProduct } from '../../store/product/types';
 
-const ProductCard = (): JSX.Element => {
+interface IProps {
+    product: IProduct;
+}
+
+const ProductCard: React.FC<IProps> = ({ product }: IProps): JSX.Element => {
+    const { name, price, photos } = product;
+
     const [activeIndex, setActiveIndex] = useState(0);
 
     const targetRef = useRef() as MutableRefObject<HTMLImageElement>;
@@ -13,13 +19,13 @@ const ProductCard = (): JSX.Element => {
 
     const nextImage = () => {
         const nextIndex =
-            activeIndex === images.length - 1 ? 0 : activeIndex + 1;
+            activeIndex === photos.length - 1 ? 0 : activeIndex + 1;
         setActiveIndex(nextIndex);
     };
 
     const prevImage = () => {
         const nextIndex =
-            activeIndex === 0 ? images.length - 1 : activeIndex - 1;
+            activeIndex === 0 ? photos.length - 1 : activeIndex - 1;
         setActiveIndex(nextIndex);
     };
 
@@ -27,15 +33,15 @@ const ProductCard = (): JSX.Element => {
         <div className="productCard">
             <img
                 ref={targetRef}
-                src={images[0].src}
-                alt=""
+                src={photos[0].url}
+                alt="Product"
                 className="productCard__img"
             />
 
             <Slider
                 dimensions={size}
                 activeIndex={activeIndex}
-                images={images}
+                images={photos}
             />
 
             <button
@@ -59,9 +65,9 @@ const ProductCard = (): JSX.Element => {
             </button>
 
             <div className="productCard__summary">
-                <h2 className="productCard__title">VIA Backpack</h2>
+                <h2 className="productCard__title">{name}</h2>
 
-                <span className="productCard__price">$155</span>
+                <span className="productCard__price">{price}</span>
 
                 <div className="productCard__buttons">
                     <button className="productCard__btn" type="button">

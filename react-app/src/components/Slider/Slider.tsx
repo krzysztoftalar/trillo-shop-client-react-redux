@@ -1,10 +1,9 @@
 import React from 'react';
+// Imports from src
+import { IPhoto } from '../../store/photo/types';
 
 interface IProps {
-    images: {
-        id: number;
-        src: string;
-    }[];
+    images: IPhoto[];
     dimensions: { width: number; height: number };
     activeIndex: number;
 }
@@ -27,7 +26,7 @@ const Slider: React.FC<IProps> = ({
                 {images.map((img) => (
                     <img
                         key={img.id}
-                        src={img.src}
+                        src={img.url}
                         className="slider__img"
                         style={{ width, height }}
                         alt={`Product ${img.id}`}

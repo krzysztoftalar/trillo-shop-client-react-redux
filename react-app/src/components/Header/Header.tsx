@@ -40,7 +40,6 @@ const Header: React.FC<IProps> = ({ props }: IProps): JSX.Element => {
 
     const elRef = useRef<HTMLDivElement>() as MutableRefObject<HTMLDivElement>;
     const position = useElementPosition(elRef);
-    console.log(position);
 
     return (
         <header className="header">

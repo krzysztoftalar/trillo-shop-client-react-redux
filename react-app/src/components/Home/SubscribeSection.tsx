@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 // Imports from src
+import { selectPromoProducts } from '../../store/product/selectors';
+import { getProducts } from '../../store/product/action';
 import ProductCardBig from '../ProductCard/ProductCardBig';
-import products from '../../app/data/products';
 
 const SubscribeSection = (): JSX.Element => {
+    // Get featured products
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getProducts([{ predicate: 'promo' }], 'promo'));
+    }, [dispatch]);
+
+    const products = useSelector(selectPromoProducts());
+
     const renderSubscribeForm = (prop?: string) => (
         <div className={`subscribe ${prop}`}>
             <h2 className="subscribe__title">Join our list</h2>
@@ -31,12 +41,12 @@ const SubscribeSection = (): JSX.Element => {
     return (
         <>
             <div className="subscribe__left-card">
-                <ProductCardBig product={products[0]} />
+                <ProductCardBig product={products[1]} />
             </div>
 
             <div className="subscribe__right-card">
                 <div className="subscribe__right-card-wrapper">
-                    <ProductCardBig product={products[1]} />
+                    <ProductCardBig product={products[0]} />
                 </div>
 
                 {renderSubscribeForm(' u-display-none-s')}

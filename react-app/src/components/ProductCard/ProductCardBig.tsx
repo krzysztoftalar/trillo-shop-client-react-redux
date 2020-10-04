@@ -1,21 +1,20 @@
 import React from 'react';
+// Imports from src
+import { IProduct } from '../../store/product/types';
 
 interface IProps {
-    product: {
-        id: number;
-        img: string;
-        title: string;
-        price: string;
-        category: string;
-    };
+    product: IProduct;
 }
 
-const ProductCardBig: React.FC<IProps> = ({
-    product: { img, title, price, category },
-}: IProps): JSX.Element => {
+const ProductCardBig: React.FC<IProps> = ({ product }: IProps): JSX.Element => {
+    if (!product) return <h1>Loading...</h1>;
+
+    const { name, price, category } = product;
+    const img = product.photos.find((x) => x.isMain);
+
     return (
         <div className="productCardBig">
-            <img className="productCardBig__img" src={img} alt="Product" />
+            <img className="productCardBig__img" src={img!.url} alt="Product" />
 
             <div className="productCardBig__box">
                 <button className="productCardBig__btn" type="button">
@@ -25,7 +24,7 @@ const ProductCardBig: React.FC<IProps> = ({
                     </div>
                 </button>
 
-                <h3 className="productCardBig__title">{title}</h3>
+                <h3 className="productCardBig__title">{name}</h3>
 
                 <span className="productCardBig__price">{price}</span>
 

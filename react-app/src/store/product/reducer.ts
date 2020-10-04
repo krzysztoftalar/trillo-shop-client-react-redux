@@ -11,9 +11,11 @@ import {
 
 export const INITIAL_STATE: ProductState = {
     products: [],
+    promoProducts: [],
+    featuredProducts: [],
     product: null,
     productsCount: 0,
-    predicate: { key: '', value: '' },
+    params: [],
     pageIndex: 0,
 };
 
@@ -23,12 +25,29 @@ export const ProductReducer: Reducer<ProductState, ProductActionTypes> = (
 ) => {
     switch (action.type) {
         case GET_PRODUCTS: {
-            const { products, productsCount } = action.payload;
-            return {
-                ...state,
-                products,
-                productsCount,
-            };
+            const {
+                products: { products, productsCount },
+                type,
+            } = action.payload;
+
+            switch (type) {
+                case 'promo':
+                    return {
+                        ...state,
+                        promoProducts: products,
+                    };
+                case 'featured':
+                    return {
+                        ...state,
+                        featuredProducts: products,
+                    };
+                default:
+                    return {
+                        ...state,
+                        products: products.concat(...state.products),
+                        productsCount,
+                    };
+            }
         }
 
         case GET_PRODUCT:
@@ -39,8 +58,7 @@ export const ProductReducer: Reducer<ProductState, ProductActionTypes> = (
 
             return {
                 ...state,
-                products: [],
-                predicate: { ...state.predicate, key, value },
+                params: [...state.params, { [key]: value }],
                 pageIndex: 0,
             };
         }

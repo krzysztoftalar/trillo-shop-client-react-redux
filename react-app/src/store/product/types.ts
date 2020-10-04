@@ -1,12 +1,13 @@
 import { Action } from 'redux';
+import { IPhoto } from '../photo/types';
 
 export interface IProduct {
-    productId: number;
-    categoryId: number;
-    productName: string;
+    id: number;
+    name: string;
     description?: string;
-    categoryName: string;
-    // stock: IStock[]
+    price: number;
+    category: string;
+    photos: IPhoto[];
 }
 
 export interface IProductsEnvelope {
@@ -16,9 +17,11 @@ export interface IProductsEnvelope {
 
 export interface ProductState {
     products: IProduct[];
+    promoProducts: IProduct[];
+    featuredProducts: IProduct[];
     product: IProduct | null;
     productsCount: number;
-    predicate: { key: string; value: string };
+    params: { [key: string]: string }[];
     pageIndex: number;
 }
 
@@ -30,7 +33,7 @@ export const ITEMS_PER_PAGE = 10;
 
 export interface GetProductsAction extends Action {
     type: typeof GET_PRODUCTS;
-    payload: IProductsEnvelope;
+    payload: { products: IProductsEnvelope; type?: string };
 }
 
 export interface GetProductAction extends Action {

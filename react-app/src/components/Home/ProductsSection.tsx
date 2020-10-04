@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 // Imports from src
+import { selectFeaturedProducts } from '../../store/product/selectors';
 import ProductCard from '../ProductCard/ProductCard';
 import OutlineButton from '../Buttons/OutlineButton';
+import { getProducts } from '../../store/product/action';
 
 const ProductsSection = (): JSX.Element => {
+    // Get featured products
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getProducts([{ predicate: 'featured' }], 'featured'));
+    }, [dispatch]);
+
+    const products = useSelector(selectFeaturedProducts());
+
     return (
         <section className="products">
             <div className="products__box">
@@ -19,13 +30,9 @@ const ProductsSection = (): JSX.Element => {
                 </p>
             </div>
 
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
-            <ProductCard />
+            {products.map((product) => (
+                <ProductCard key={product.id} product={product} />
+            ))}
 
             <div className="products__button-box">
                 <OutlineButton content="See all products" />
