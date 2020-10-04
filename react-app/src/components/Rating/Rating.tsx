@@ -3,7 +3,10 @@ import React from 'react';
 import svg from '../../assets/img/sprite.svg';
 
 interface IProps {
-    rating: string;
+    rating: {
+        value: string;
+        count: number;
+    };
 }
 
 const stars = [{ id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }];
@@ -20,7 +23,10 @@ const Rating: React.FC<IProps> = ({ rating }: IProps): JSX.Element => {
                     ))}
                 </span>
 
-                <span className="rating__users" style={{ width: `${rating}%` }}>
+                <span
+                    className="rating__users"
+                    style={{ width: `${rating.value}%` }}
+                >
                     {stars.map((star) => (
                         <svg className="rating__star" key={star.id}>
                             <use xlinkHref={`${svg}#icon-star-full`} />
@@ -30,7 +36,7 @@ const Rating: React.FC<IProps> = ({ rating }: IProps): JSX.Element => {
             </div>
 
             <button className="product__review-btn" type="button">
-                2 Customer Reviews
+                {rating.count} Customer Reviews
             </button>
         </>
     );

@@ -1,19 +1,8 @@
 import { Action } from 'redux';
-import { IPhoto } from '../photo/types';
+// Imports from src
+import { IProduct, IProductsEnvelope } from '../../models/product';
 
-export interface IProduct {
-    id: number;
-    name: string;
-    description?: string;
-    price: number;
-    category: string;
-    photos: IPhoto[];
-}
-
-export interface IProductsEnvelope {
-    products: IProduct[];
-    productsCount: number;
-}
+export * from '../../models/product';
 
 export interface ProductState {
     products: IProduct[];

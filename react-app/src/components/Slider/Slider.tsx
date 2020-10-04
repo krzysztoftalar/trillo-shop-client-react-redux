@@ -1,6 +1,6 @@
 import React from 'react';
 // Imports from src
-import { IPhoto } from '../../store/photo/types';
+import { IPhoto } from '../../models/photo';
 
 interface IProps {
     images: IPhoto[];

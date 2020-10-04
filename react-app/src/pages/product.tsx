@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { RouteComponentProps } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 // Imports from src
 import Header from '../components/Header/Header';
-import { imagesDetails } from '../app/data/images';
 import Gallery from '../components/Carousel/Gallery';
 import SocialPillBtn from '../components/Navigation/SocialPillBtn';
 import AddToCartForm from '../components/Product/AddToCartForm';
@@ -11,14 +12,35 @@ import SideDrawer from '../components/SideDrawer/SideDrawer';
 import useSideDrawer from '../app/hooks/useSideDrawer';
 import Backdrop from '../components/Backdrop/Backdrop';
 import Rating from '../components/Rating/Rating';
+import { getProduct } from '../store/product/action';
+import { selectProduct } from '../store/product/selectors';
 
-const rating = ((3.5 / 5) * 100).toPrecision(3);
+interface DetailParams {
+    id: string;
+}
 
-const Product = (): JSX.Element => {
+const Product: React.FC<RouteComponentProps<DetailParams>> = ({
+    match,
+    history,
+}): JSX.Element => {
     const { shouldRender, handleBackdrop, open } = useSideDrawer();
 
+    const product = useSelector(selectProduct());
+
+    // Get product
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getProduct(Number(match.params.id)));
+    }, [match.params.id, history, dispatch]);
+
+    if (!product) return <h1>Product not found</h1>;
+
+    // Calculate rating
+    const value = ((product?.rating / 5) * 100).toPrecision(3);
+    const count = product.reviews.length;
+
     return (
-        <div className="product">
+        <div className="product" style={{ backgroundColor: product.bgColor }}>
             {/* Backdrop */}
             <Backdrop handleBackdrop={handleBackdrop} open={open} />
 
@@ -30,49 +52,42 @@ const Product = (): JSX.Element => {
 
             {/* Product images */}
             <div className="product__gallery-box">
-                <Gallery images={imagesDetails} />
+                <Gallery images={product.photos} />
             </div>
 
             {/* Product summary content */}
-            <div className="product__summary-box">
-                <h1 className="product__title">VIA Backpack</h1>
 
-                <p className="product__text">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit
-                </p>
+            <div className="product__summary-box">
+                <h1 className="product__title">{product.name}</h1>
+
+                <p className="product__text">{product.description}</p>
 
                 {/* Rating */}
                 <div className="product__rating-box">
-                    <Rating rating={rating} />
+                    <Rating rating={{ value, count }} />
                 </div>
 
-                <p className="product__price">$ 120</p>
+                <p className="product__price">{product.price}</p>
 
                 {/* Selection form */}
-                <AddToCartForm />
+                <AddToCartForm stocks={product.stocks} />
 
                 {/* Tags */}
                 <div className="product__meta-box">
                     <div className="product__meta-group">
                         <span className="product__tag">Category</span>
                         <button className="product__btn-link" type="button">
-                            Accessories
+                            {product.category}
                         </button>
                     </div>
 
                     <div className="product__meta-group">
                         <span className="product__tag">Tags</span>
-                        <button className="product__btn-link" type="button">
-                            Accessories
-                        </button>
-                        ,&nbsp;
-                        <button className="product__btn-link" type="button">
-                            Backpack
-                        </button>
-                        ,&nbsp;
-                        <button className="product__btn-link" type="button">
-                            Bags
-                        </button>
+                        {product.tags.map((x) => (
+                            <button className="product__btn-link" type="button">
+                                {x.tagId}
+                            </button>
+                        ))}
                     </div>
                 </div>
 

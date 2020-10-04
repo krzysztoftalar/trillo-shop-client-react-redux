@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 // Imports from src
 import usePrevState from '../../app/hooks/usePrevState';
+import { IPhoto } from '../../models/photo';
 
 interface IProps {
-    images: {
-        id: number;
-        src: string;
-    }[];
+    images: IPhoto[];
 }
 
 const Gallery: React.FC<IProps> = ({ images }: IProps): JSX.Element => {
@@ -14,7 +12,7 @@ const Gallery: React.FC<IProps> = ({ images }: IProps): JSX.Element => {
     const [animating, setAnimating] = useState(false);
     const prevIndex = usePrevState(activeIndex);
 
-    const handleImage = (id: number) => {
+    const handleImage = (id: string) => {
         const newIndex = images.findIndex((img) => img.id === id);
 
         if (newIndex === activeIndex) return;
@@ -30,21 +28,21 @@ const Gallery: React.FC<IProps> = ({ images }: IProps): JSX.Element => {
         <div className="gallery">
             {/* Get width of gallery box */}
             <img
-                src={images[0].src}
+                src={images[0].url}
                 className="gallery__wrapper"
                 alt="Product"
             />
 
             {/* Prev image */}
             <img
-                src={images[prevIndex].src}
+                src={images[prevIndex].url}
                 className={`gallery__img ${fadeOut}`}
                 alt="Product"
             />
 
             {/* Active image */}
             <img
-                src={images[activeIndex].src}
+                src={images[activeIndex].url}
                 className={`gallery__img ${fadeIn}`}
                 onAnimationEnd={() => setAnimating(false)}
                 alt="Product"

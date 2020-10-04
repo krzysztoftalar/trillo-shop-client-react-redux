@@ -1,24 +1,18 @@
 import React, { FormEvent, useState } from 'react';
-import { useForm } from 'react-hook-form';
+import _ from 'lodash';
 // Imports from src
-import sizes from '../../app/options/sizes';
-import colors from '../../app/options/colors';
 import svg from '../../assets/img/sprite.svg';
+import { IStock } from '../../models/stock';
 
-const AddToCartForm = (): JSX.Element => {
+interface IProps {
+    stocks: IStock[];
+}
+
+const AddToCartForm: React.FC<IProps> = ({ stocks }): JSX.Element => {
     const [qty, setQty] = useState(1);
-    const [size, setSize] = useState<{ id: number; size: string }>({
-        id: sizes[0].id,
-        size: sizes[0].size,
-    });
-    const [color, setColor] = useState<{ id: number; color: string }>({
-        id: colors[0].id,
-        color: colors[0].color,
-    });
+    const [myStock, setMyStock] = useState<IStock>(stocks[0]);
 
-    const { register, handleSubmit, setValue } = useForm();
-
-    const onSubmit = (data: any) => console.log(data);
+    const handleSubmit = (data: any) => console.log(data);
 
     const handleQtyChange = (event: FormEvent<HTMLInputElement>) => {
         const { value } = event.currentTarget;
@@ -26,70 +20,66 @@ const AddToCartForm = (): JSX.Element => {
 
         if (!Number.isNaN(Number(quantity))) {
             setQty(quantity);
-            setValue('quantity', value);
         }
     };
 
-    const handleSizeChange = (id: number) => {
-        const newSize = sizes.filter((item) => item.id === id)[0];
-        setSize(newSize);
-        setValue('size', newSize);
+    const handleStockChange = (id: number) => {
+        const stock = stocks.filter((item) => item.id === id)[0];
+        setMyStock(stock);
     };
 
-    const handleColorChange = (id: number) => {
-        const newColor = colors.filter((item) => item.id === id)[0];
-        setColor(newColor);
-        setValue('color', newColor);
-    };
+    // Check if product has color or size
+    const hasColors = stocks.some((x) => x.productColor === null);
+    const hasSizes = stocks.some((x) => x.productSize === null);
 
     return (
-        <form
-            onSubmit={handleSubmit(onSubmit)}
-            className="product__form"
-            action="#"
-        >
-            <p className="product__text">Size</p>
+        <form onSubmit={handleSubmit} className="product__form" action="#">
+            {!hasSizes && <p className="product__text">Size</p>}
 
-            <div className="product__sizes-box">
-                {sizes.map((item) => (
-                    <button
-                        onClick={() => handleSizeChange(item.id)}
-                        ref={register}
-                        key={item.id}
-                        value={size.size}
-                        name="size"
-                        className={`product__btn-size ${
-                            item.id === size.id
-                                ? 'product__btn-size--active'
-                                : ''
-                        }`}
-                        type="button"
-                    >
-                        {item.size}
-                    </button>
-                ))}
-            </div>
+            {!hasSizes && (
+                <div className="product__sizes-box">
+                    {_.uniqBy(stocks, 'productSize').map((stock) => (
+                        <button
+                            onClick={() => handleStockChange(stock.id)}
+                            key={stock.id}
+                            value={myStock.productSize}
+                            name="size"
+                            className={`product__btn-size ${
+                                stock.productSize === myStock.productSize
+                                    ? 'product__btn-size--active'
+                                    : ''
+                            }`}
+                            type="button"
+                        >
+                            {stock.productSize}
+                        </button>
+                    ))}
+                </div>
+            )}
 
-            <p className="product__text">Color</p>
+            {!hasColors && <p className="product__text">Color</p>}
 
-            <div className="product__colors-box">
-                {colors.map((item) => (
-                    <button
-                        onClick={() => handleColorChange(item.id)}
-                        ref={register}
-                        key={item.id}
-                        value={color.color}
-                        name="color"
-                        className={`product__btn-color ${
-                            item.id === color.id
-                                ? 'product__btn-color--active'
-                                : ''
-                        }`}
-                        style={{ backgroundColor: item.color }}
-                        type="button"
-                    />
-                ))}
-            </div>
+            {!hasColors && (
+                <div className="product__colors-box">
+                    {stocks
+                        .filter((x) => x.productSize === myStock.productSize)
+                        .map((stock) => (
+                            <button
+                                onClick={() => handleStockChange(stock.id)}
+                                key={stock.id}
+                                value={myStock.productColor}
+                                name="color"
+                                className={`product__btn-color ${
+                                    stock.id === myStock.id
+                                        ? 'product__btn-color--active'
+                                        : ''
+                                }`}
+                                style={{ backgroundColor: stock.productColor }}
+                                type="button"
+                            />
+                        ))}
+                </div>
+            )}
 
             <div className="product__form-qty-box">
                 <div className="quantity">
@@ -106,13 +96,12 @@ const AddToCartForm = (): JSX.Element => {
                     </button>
 
                     <input
-                        ref={register({ pattern: /^[0-9]*$/ })}
                         value={qty}
                         onChange={(e) => handleQtyChange(e)}
                         name="quantity"
                         type="number"
                         min="1"
-                        max=""
+                        max={myStock.quantity}
                         className="quantity__input"
                     />
 

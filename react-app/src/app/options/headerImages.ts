@@ -1,8 +1,8 @@
 import img1 from '../../assets/img/home-1.jpg';
 import img2 from '../../assets/img/home-2.jpg';
-import img3 from '../../assets/img/home-3.webp';
-import img4 from '../../assets/img/home-4.webp';
-import img5 from '../../assets/img/home-5.webp';
+// import img3 from '../../assets/img/home-3.webp';
+// import img4 from '../../assets/img/home-4.webp';
+// import img5 from '../../assets/img/home-5.webp';
 import img7 from '../../assets/img/home-7.jpg';
 import img8 from '../../assets/img/home-8.jpg';
 

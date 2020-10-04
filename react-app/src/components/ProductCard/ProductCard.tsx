@@ -1,9 +1,10 @@
 import React, { MutableRefObject, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 // Imports from src
 import svg from '../../assets/img/sprite.svg';
 import Slider from '../Slider/Slider';
 import useDimensions from '../../app/hooks/useDimensions';
-import { IProduct } from '../../store/product/types';
+import { IProduct } from '../../models/product';
 
 interface IProps {
     product: IProduct;
@@ -38,11 +39,13 @@ const ProductCard: React.FC<IProps> = ({ product }: IProps): JSX.Element => {
                 className="productCard__img"
             />
 
-            <Slider
-                dimensions={size}
-                activeIndex={activeIndex}
-                images={photos}
-            />
+            <Link to={`products/${product.id}`}>
+                <Slider
+                    dimensions={size}
+                    activeIndex={activeIndex}
+                    images={photos}
+                />
+            </Link>
 
             <button
                 onClick={() => prevImage()}
@@ -65,7 +68,9 @@ const ProductCard: React.FC<IProps> = ({ product }: IProps): JSX.Element => {
             </button>
 
             <div className="productCard__summary">
-                <h2 className="productCard__title">{name}</h2>
+                <h2 className="productCard__title">
+                    <Link to={`products/${product.id}`}>{name}</Link>
+                </h2>
 
                 <span className="productCard__price">{price}</span>
 

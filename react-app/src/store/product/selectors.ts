@@ -14,3 +14,6 @@ export const selectFeaturedProducts = () =>
 
 export const selectPromoProducts = () =>
     createSelector([getProductState], (product) => product.promoProducts);
+
+export const selectProduct = () =>
+    createSelector([getProductState], (product) => product.product);

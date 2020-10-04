@@ -28,6 +28,7 @@ module.exports = {
         createDefaultProgram: true,
     },
     rules: {
+        'react/prop-types': 0,
         'no-param-reassign': 'off',
         'import/prefer-default-export': 'off',
         'jsx-a11y/label-has-for': [

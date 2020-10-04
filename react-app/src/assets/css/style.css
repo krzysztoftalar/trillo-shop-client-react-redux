@@ -229,8 +229,7 @@ button {
   padding-bottom: 2rem;
   overflow: hidden;
   transition: box-shadow 0.4s;
-  color: black;
-  cursor: pointer; }
+  color: black; }
   .productCard:hover {
     box-shadow: 0 0.8rem 3.2rem 0 rgba(0, 0, 0, 0.1); }
   .productCard:hover .productCard__summary {
@@ -261,7 +260,12 @@ button {
   .productCard__title {
     padding: 2rem;
     font-size: 1.5rem;
-    font-weight: 400; }
+    font-weight: 400;
+    cursor: pointer; }
+    .productCard__title a:link,
+    .productCard__title a:visited {
+      color: black;
+      text-decoration: none; }
   .productCard__price {
     margin-bottom: 2rem;
     margin-left: 2rem;
@@ -1635,8 +1639,7 @@ button {
 .product {
   display: grid;
   grid-template-columns: [side-start] 6rem [side-end full-start] 6rem [center-start] repeat(8, [col-start] 1fr [col-end]) [center-end side-right-start] 6rem [side-right-end] 6rem [full-end];
-  grid-template-rows: 12rem 8rem;
-  background-color: #eef4e8; }
+  grid-template-rows: 12rem 8rem; }
   .product .header {
     z-index: 50;
     grid-column: side-start / -1;

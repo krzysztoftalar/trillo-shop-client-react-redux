@@ -7,7 +7,6 @@
     overflow: hidden
     transition: box-shadow 0.4s
     color: $color-primary
-    cursor: pointer
 
     &:hover
         box-shadow: 0 0.8rem 3.2rem 0 rgba(0, 0, 0, 0.1)
@@ -49,6 +48,12 @@
         padding: 2rem
         font-size: $small-font-size
         font-weight: 400
+        cursor: pointer
+
+        & a:link,
+        & a:visited
+            color: $color-primary
+            text-decoration: none
 
     &__price
         margin-bottom: 2rem

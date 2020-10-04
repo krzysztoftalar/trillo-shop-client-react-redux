@@ -1,4 +1,4 @@
-import React, { MutableRefObject, useRef } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // Imports from src
 import HamburgerButton from '../Buttons/HamburgerButton';
@@ -13,7 +13,6 @@ import { RootState } from '../../store/rootState';
 import { handleModal, handleSideDrawer } from '../../store/ui/action';
 import { checkIfIsLoggedIn } from '../../store/user/selectors';
 import { logout } from '../../store/user/action';
-import { useElementPosition } from '../../app/hooks/useElementPosition';
 
 interface StateProps {
     openSideDrawer: boolean;
@@ -37,9 +36,6 @@ const Header: React.FC<IProps> = ({ props }: IProps): JSX.Element => {
         li: 'navigation__item--box',
         a: 'navigation__link--box',
     };
-
-    const elRef = useRef<HTMLDivElement>() as MutableRefObject<HTMLDivElement>;
-    const position = useElementPosition(elRef);
 
     return (
         <header className="header">
@@ -99,7 +95,7 @@ const Header: React.FC<IProps> = ({ props }: IProps): JSX.Element => {
                 )}
 
                 {/* -------- Search form -------- */}
-                <div className="header__right-items--form" ref={elRef}>
+                <div className="header__right-items--form">
                     <SearchForm props={props} />
                 </div>
 

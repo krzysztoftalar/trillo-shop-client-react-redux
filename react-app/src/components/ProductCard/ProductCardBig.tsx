@@ -1,6 +1,6 @@
 import React from 'react';
 // Imports from src
-import { IProduct } from '../../store/product/types';
+import { IProduct } from '../../models/product';
 
 interface IProps {
     product: IProduct;
