@@ -8,12 +8,12 @@ const removeClassFromBody = (className: string) =>
 const useBodyClass = (className: string | string[]): void => {
     useEffect(() => {
         className instanceof Array
-            ? className.map(addClassToBody)
+            ? className.map((x) => addClassToBody(x))
             : addClassToBody(className);
 
         return () => {
             className instanceof Array
-                ? className.map(removeClassFromBody)
+                ? className.map((x) => removeClassFromBody(x))
                 : removeClassFromBody(className);
         };
     }, [className]);

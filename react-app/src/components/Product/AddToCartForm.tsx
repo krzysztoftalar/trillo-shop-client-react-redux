@@ -1,18 +1,25 @@
 import React, { FormEvent, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import _ from 'lodash';
 // Imports from src
 import svg from '../../assets/img/sprite.svg';
 import { IStock } from '../../models/stock';
+import { addToCart } from '../../store/cart/action';
 
 interface IProps {
     stocks: IStock[];
 }
 
 const AddToCartForm: React.FC<IProps> = ({ stocks }): JSX.Element => {
+    const dispatch = useDispatch();
+
     const [qty, setQty] = useState(1);
     const [myStock, setMyStock] = useState<IStock>(stocks[0]);
 
-    const handleSubmit = (data: any) => console.log(data);
+    const handleSubmit = (event: React.SyntheticEvent) => {
+        event.preventDefault();
+        dispatch(addToCart(myStock.id, qty));
+    };
 
     const handleQtyChange = (event: FormEvent<HTMLInputElement>) => {
         const { value } = event.currentTarget;
@@ -24,8 +31,10 @@ const AddToCartForm: React.FC<IProps> = ({ stocks }): JSX.Element => {
     };
 
     const handleStockChange = (id: number) => {
-        const stock = stocks.filter((item) => item.id === id)[0];
-        setMyStock(stock);
+        const stock = stocks.find((item) => item.id === id);
+        if (stock) {
+            setMyStock(stock);
+        }
     };
 
     // Check if product has color or size
@@ -33,7 +42,11 @@ const AddToCartForm: React.FC<IProps> = ({ stocks }): JSX.Element => {
     const hasSizes = stocks.some((x) => x.productSize === null);
 
     return (
-        <form onSubmit={handleSubmit} className="product__form" action="#">
+        <form
+            onSubmit={(e) => handleSubmit(e)}
+            className="product__form"
+            action="#"
+        >
             {!hasSizes && <p className="product__text">Size</p>}
 
             {!hasSizes && (

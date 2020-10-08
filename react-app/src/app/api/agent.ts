@@ -1,8 +1,9 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 // Imports from src
-import { IProduct, IProductsEnvelope } from '../../store/product/types';
+import { IProduct, IProductsEnvelope } from '../../models/product';
 import { ICategory } from '../../store/category/types';
 import { IUser, IUserFormValues } from '../../store/user/types';
+import { ICart, ICartEnvelope } from '../../models/cart';
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
@@ -52,6 +53,15 @@ const Products = {
     details: (id: number): Promise<IProduct> => requests.get(`/products/${id}`),
 };
 
+const Cart = {
+    getCart: (): Promise<ICartEnvelope> =>
+        axios.get('/carts', { withCredentials: true }).then(responseBody),
+    addToCart: (stockId: number, quantity: number): Promise<boolean> =>
+        axios
+            .post(`carts/${stockId}/${quantity}`, {}, { withCredentials: true })
+            .then(responseBody),
+};
+
 const Categories = {
     list: (): Promise<ICategory[]> => requests.get('/categories'),
 };
@@ -60,4 +70,5 @@ export default {
     User,
     Products,
     Categories,
+    Cart,
 };

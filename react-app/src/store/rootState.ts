@@ -3,6 +3,7 @@ import { CategoryState } from './category/types';
 import { UserState } from './user/types';
 import { UIState } from './ui/types';
 import { ErrorState } from './error/type';
+import { CartState } from './cart/types';
 
 export interface RootState {
     user: UserState;
@@ -10,4 +11,5 @@ export interface RootState {
     category: CategoryState;
     ui: UIState;
     error: ErrorState;
+    cart: CartState;
 }

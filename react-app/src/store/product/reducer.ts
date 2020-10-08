@@ -1,5 +1,5 @@
 import { Reducer } from 'redux';
-// import types
+// Imports from src
 import {
     GET_PRODUCT,
     GET_PRODUCTS,

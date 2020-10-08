@@ -6,14 +6,5 @@ import { ProductState } from './types';
 export const getProductState = (state: RootState): ProductState =>
     state.product;
 
-export const selectProducts = () =>
-    createSelector([getProductState], (product) => product.products);
-
-export const selectFeaturedProducts = () =>
-    createSelector([getProductState], (product) => product.featuredProducts);
-
-export const selectPromoProducts = () =>
-    createSelector([getProductState], (product) => product.promoProducts);
-
-export const selectProduct = () =>
-    createSelector([getProductState], (product) => product.product);
+export const selectProductState = () =>
+    createSelector([getProductState], (product) => product);

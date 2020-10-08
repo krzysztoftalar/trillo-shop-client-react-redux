@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // Imports from src
-import { selectFeaturedProducts } from '../../store/product/selectors';
 import ProductCard from '../ProductCard/ProductCard';
 import OutlineButton from '../Buttons/OutlineButton';
 import { getProducts } from '../../store/product/action';
+import { selectProductState } from '../../store/product/selectors';
 
 const ProductsSection = (): JSX.Element => {
     // Get featured products
@@ -13,7 +13,7 @@ const ProductsSection = (): JSX.Element => {
         dispatch(getProducts([{ predicate: 'featured' }], 'featured'));
     }, [dispatch]);
 
-    const products = useSelector(selectFeaturedProducts());
+    const { featuredProducts } = useSelector(selectProductState());
 
     return (
         <section className="products">
@@ -30,7 +30,7 @@ const ProductsSection = (): JSX.Element => {
                 </p>
             </div>
 
-            {products.map((product) => (
+            {featuredProducts.map((product) => (
                 <ProductCard key={product.id} product={product} />
             ))}
 

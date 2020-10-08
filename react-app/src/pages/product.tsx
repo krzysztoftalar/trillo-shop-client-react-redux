@@ -13,7 +13,7 @@ import useSideDrawer from '../app/hooks/useSideDrawer';
 import Backdrop from '../components/Backdrop/Backdrop';
 import Rating from '../components/Rating/Rating';
 import { getProduct } from '../store/product/action';
-import { selectProduct } from '../store/product/selectors';
+import { selectProductState } from '../store/product/selectors';
 
 interface DetailParams {
     id: string;
@@ -25,7 +25,7 @@ const Product: React.FC<RouteComponentProps<DetailParams>> = ({
 }): JSX.Element => {
     const { shouldRender, handleBackdrop, open } = useSideDrawer();
 
-    const product = useSelector(selectProduct());
+    const { product } = useSelector(selectProductState());
 
     // Get product
     const dispatch = useDispatch();

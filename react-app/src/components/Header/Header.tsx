@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // Imports from src
 import HamburgerButton from '../Buttons/HamburgerButton';
@@ -13,6 +13,8 @@ import { RootState } from '../../store/rootState';
 import { handleModal, handleSideDrawer } from '../../store/ui/action';
 import { checkIfIsLoggedIn } from '../../store/user/selectors';
 import { logout } from '../../store/user/action';
+import { getCart } from '../../store/cart/action';
+import { selectCartState } from '../../store/cart/selectors';
 
 interface StateProps {
     openSideDrawer: boolean;
@@ -25,10 +27,16 @@ interface IProps {
 const Header: React.FC<IProps> = ({ props }: IProps): JSX.Element => {
     const dispatch = useDispatch();
 
+    useEffect(() => {
+        dispatch(getCart());
+    }, [dispatch]);
+
+    const { totalQty } = useSelector(selectCartState());
+    const isLoggedIn = useSelector(checkIfIsLoggedIn());
+
     const { openSideDrawer } = useSelector<RootState, StateProps>((state) => {
         return { openSideDrawer: state.ui.openSideDrawer };
     });
-    const isLoggedIn = useSelector(checkIfIsLoggedIn());
 
     // Classes for styling Navigation component
     const navProps = {
@@ -104,7 +112,7 @@ const Header: React.FC<IProps> = ({ props }: IProps): JSX.Element => {
                     <NavIconBox props={icons[0]} />
                 </div>
 
-                <NavIconBox props={icons[1]} />
+                <NavIconBox props={{ icon: 'cart', number: totalQty }} />
             </nav>
         </header>
     );
