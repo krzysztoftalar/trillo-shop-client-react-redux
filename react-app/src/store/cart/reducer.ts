@@ -1,6 +1,6 @@
 import { Reducer } from 'redux';
 // Imports from src
-import { ADD_TO_CART, CartActionTypes, CartState, GET_CART } from './types';
+import { CartActionTypes, CartState, GET_CART } from './types';
 
 export const INITIAL_STATE: CartState = {
     cart: [],
@@ -13,15 +13,6 @@ export const CartReducer: Reducer<CartState, CartActionTypes> = (
     action
 ) => {
     switch (action.type) {
-        case ADD_TO_CART: {
-            const { quantity } = action.payload;
-
-            return {
-                ...state,
-                totalQty: state.totalQty + quantity,
-            };
-        }
-
         case GET_CART: {
             const { cartProducts, totalQty, totalValue } = action.payload;
 

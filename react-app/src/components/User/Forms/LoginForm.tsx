@@ -85,7 +85,7 @@ const LoginForm = (): JSX.Element => {
             <button className="btn-submit" disabled={submitting} type="submit">
                 {submitting ? <ButtonIndicator /> : 'Sign in'}
             </button>
-            <button className="login-form__btn-register" type="button">
+            <button className="btn-transparent" type="button">
                 Create an account
             </button>
             <button className="login-form__btn-lost-password" type="button">

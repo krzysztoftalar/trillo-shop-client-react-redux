@@ -360,6 +360,104 @@ button {
       .productCardBig__price {
         font-size: 2rem; } }
 
+.smallCart {
+  display: grid;
+  grid-gap: 2rem;
+  padding-top: 3rem;
+  color: black; }
+  .smallCart__item {
+    display: flex; }
+  .smallCart__img {
+    display: block;
+    width: 12rem;
+    margin-right: 3rem; }
+    .smallCart__img img {
+      display: block;
+      width: 100%; }
+  .smallCart__summary-box {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 1.4rem; }
+  .smallCart__header-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem; }
+  .smallCart__title:link, .smallCart__title:visited {
+    color: black;
+    font-size: 1.6rem;
+    font-weight: 700;
+    text-decoration: none; }
+  .smallCart__btn-delete {
+    display: flex;
+    align-items: center;
+    margin-right: -1rem;
+    padding: 1rem;
+    background-color: transparent; }
+    .smallCart__btn-delete:hover .smallCart__btn-delete-icon {
+      fill: black; }
+    .smallCart__btn-delete-icon {
+      width: 1.6rem;
+      height: 1.6rem;
+      transition: fill 0.4s;
+      fill: #a2a5a6; }
+  .smallCart__variation-box {
+    display: grid;
+    grid-template-columns: repeat(5, min-content);
+    grid-gap: 1rem;
+    align-items: center;
+    margin-bottom: 1rem; }
+  .smallCart__color {
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem; }
+  .smallCart__qty-box {
+    display: grid;
+    grid-template-columns: repeat(2, min-content) 1fr;
+    align-items: center; }
+    .smallCart__qty-box .dropdown {
+      font-size: 1.4rem; }
+      .smallCart__qty-box .dropdown__box {
+        padding: 0 1.5rem; }
+      .smallCart__qty-box .dropdown__list {
+        width: auto; }
+      .smallCart__qty-box .dropdown__option {
+        padding: 0.5rem 1.5rem; }
+  .smallCart__qty {
+    color: #686b6c; }
+  .smallCart__item-price {
+    justify-self: end;
+    font-weight: 700; }
+  .smallCart__total {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 4rem;
+    margin-bottom: 1rem;
+    font-size: 1.6rem;
+    font-weight: 400; }
+  .smallCart .btn-submit {
+    margin-bottom: 4rem; }
+  .smallCart__empty {
+    width: 100%;
+    height: 100%; }
+  .smallCart__empty-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    transform: translateY(-5rem);
+    color: #a2a5a6;
+    font-size: 1.8rem; }
+  .smallCart__empty-icon {
+    width: 20rem;
+    height: 20rem;
+    margin-bottom: 5rem;
+    fill: #cdcfd0; }
+
 .apiError__text {
   animation: fadeIn 0.3s;
   color: red;
@@ -469,21 +567,6 @@ button {
       margin-bottom: 3rem; }
   .login-form__group:nth-child(3) {
     margin: 1rem 0; }
-  .login-form__btn-register {
-    width: 100%;
-    height: 6rem;
-    transition: background-color 0.3s, color 0.3s;
-    border: 1px solid black;
-    background-color: transparent;
-    color: black;
-    font-size: 1.6rem;
-    text-transform: uppercase;
-    cursor: pointer; }
-    .login-form__btn-register:active, .login-form__btn-register:focus {
-      outline: none; }
-    .login-form__btn-register:hover {
-      background-color: black;
-      color: white; }
   .login-form__btn-lost-password {
     align-self: end;
     justify-self: center;
@@ -559,6 +642,7 @@ button {
   display: flex;
   align-items: baseline;
   padding: 2rem 1.5rem;
+  background-color: transparent;
   cursor: pointer; }
   @media only screen and (max-width: 75em) {
     .nav-icon__box {
@@ -692,6 +776,22 @@ button {
       border: 1px solid white;
       background-color: transparent;
       color: white; }
+
+.btn-transparent {
+  width: 100%;
+  height: 6rem;
+  transition: background-color 0.3s, color 0.3s;
+  border: 1px solid black;
+  background-color: transparent;
+  color: black;
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  cursor: pointer; }
+  .btn-transparent:active, .btn-transparent:focus {
+    outline: none; }
+  .btn-transparent:hover {
+    background-color: black;
+    color: white; }
 
 .btn-link {
   position: relative;
@@ -858,6 +958,7 @@ button {
     transform: rotate(180deg); }
   .dropdown__list {
     position: absolute;
+    z-index: 100;
     top: 100%;
     right: 1.5rem;
     width: 10rem;
@@ -873,7 +974,7 @@ button {
     transition: background-color 0.3s ease-in;
     line-height: 1.7;
     cursor: pointer; }
-    .dropdown__option:hover {
+    .dropdown__option:hover, .dropdown__option--active {
       background-color: #e3e7e8; }
   .dropdown__box {
     display: flex;
@@ -1048,7 +1149,7 @@ button {
     letter-spacing: 0.5px;
     text-transform: uppercase; }
 
-.authForm {
+.sideModal {
   display: grid;
   position: absolute;
   top: 0;
@@ -1060,35 +1161,35 @@ button {
   box-shadow: 0 0 3rem 0 rgba(0, 0, 0, 0.1);
   color: black; }
   @media only screen and (max-width: 37.5em) {
-    .authForm {
+    .sideModal {
       width: 100vw; } }
-  .authForm__header-box {
+  .sideModal__header-box {
     display: flex;
     align-items: flex-end;
     padding: 3rem 6rem; }
     @media only screen and (max-width: 75em) {
-      .authForm__header-box {
+      .sideModal__header-box {
         padding: 2rem 4rem; } }
     @media only screen and (max-width: 50em) {
-      .authForm__header-box {
+      .sideModal__header-box {
         padding: 0 2rem; } }
-    .authForm__header-box .hamburger-btn {
+    .sideModal__header-box .hamburger-btn {
       margin-right: -1rem;
       transform: translateY(25%); }
-  .authForm__content-box {
+  .sideModal__content-box {
     height: 100%;
     padding: 0 6rem;
     overflow-y: auto; }
     @media only screen and (max-width: 75em) {
-      .authForm__content-box {
+      .sideModal__content-box {
         padding: 0 4rem; } }
     @media only screen and (max-width: 50em) {
-      .authForm__content-box {
+      .sideModal__content-box {
         padding: 2rem 2rem 0; } }
-  .authForm__header {
+  .sideModal__header {
     flex: 1;
     font-size: 1.8rem; }
-  .authForm__text {
+  .sideModal__text {
     font-size: 1.3rem;
     font-weight: 700; }
 

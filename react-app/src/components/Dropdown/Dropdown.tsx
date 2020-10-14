@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 // Imports from src
 import svg from '../../assets/img/sprite.svg';
 
@@ -7,18 +7,16 @@ interface IProps {
         id: number;
         value: string;
     }[];
+    setCurrent: (opt: { id: number; value: string }) => void;
+    current: { id: number; value: string };
 }
 
-const Dropdown: React.FC<IProps> = ({ options }: IProps): JSX.Element => {
-    const [current, setCurrent] = useState<{ id: number; value: string }>({
-        id: 0,
-        value: '',
-    });
+const Dropdown: React.FC<IProps> = ({
+    options,
+    setCurrent,
+    current,
+}: IProps): JSX.Element => {
     const [open, setOpen] = useState(false);
-
-    useEffect(() => {
-        setCurrent(options[0]);
-    }, [options]);
 
     return (
         <div className="dropdown" onMouseEnter={() => setOpen(true)}>
@@ -35,13 +33,13 @@ const Dropdown: React.FC<IProps> = ({ options }: IProps): JSX.Element => {
                     {options.map((opt) => (
                         <li key={opt.id}>
                             <span
-                                className="dropdown__option"
+                                className={`dropdown__option ${
+                                    opt.id === current.id
+                                        ? 'dropdown__option--active'
+                                        : ''
+                                }`}
                                 onClick={() => {
-                                    setCurrent((prev) => ({
-                                        ...prev,
-                                        id: opt.id,
-                                        value: opt.value,
-                                    }));
+                                    setCurrent(opt);
                                     setOpen(false);
                                 }}
                             >

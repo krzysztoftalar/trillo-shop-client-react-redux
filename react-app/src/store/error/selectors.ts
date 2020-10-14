@@ -1,8 +1,9 @@
 import { createSelector } from 'reselect';
 // Imports from src
 import { RootState } from '../rootState';
+import { IError } from './type';
 
-export const selectErrors = (state: RootState) => state.error.errors;
+export const selectErrors = (state: RootState): IError[] => state.error.errors;
 
 export const selectError = (actionsToCheck: string) => {
     return createSelector([selectErrors], (errors) =>

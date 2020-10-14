@@ -8,13 +8,15 @@ import accountLinks from '../../app/options/accountLinks';
 import SearchForm from '../Forms/SearchForm';
 import NavIconBox from '../Navigation/NavIconBox';
 import { icons } from '../../app/options/navIcons';
-import AuthForm from '../User/Forms/AuthForm';
 import { RootState } from '../../store/rootState';
 import { handleModal, handleSideDrawer } from '../../store/ui/action';
 import { checkIfIsLoggedIn } from '../../store/user/selectors';
 import { logout } from '../../store/user/action';
 import { getCart } from '../../store/cart/action';
 import { selectCartState } from '../../store/cart/selectors';
+import SideModal from '../Modal/SideModal';
+import LoginForm from '../User/Forms/LoginForm';
+import SmallCart from '../User/Cart/SmallCart';
 
 interface StateProps {
     openSideDrawer: boolean;
@@ -70,7 +72,16 @@ const Header: React.FC<IProps> = ({ props }: IProps): JSX.Element => {
                 {!isLoggedIn && (
                     <div className="u-display-none-l">
                         <button
-                            onClick={() => dispatch(handleModal(<AuthForm />))}
+                            onClick={() =>
+                                dispatch(
+                                    handleModal(
+                                        <SideModal
+                                            title="Sign In"
+                                            content={<LoginForm />}
+                                        />
+                                    )
+                                )
+                            }
                             className="header__account-link"
                             type="button"
                         >
@@ -112,7 +123,19 @@ const Header: React.FC<IProps> = ({ props }: IProps): JSX.Element => {
                     <NavIconBox props={icons[0]} />
                 </div>
 
-                <NavIconBox props={{ icon: 'cart', number: totalQty }} />
+                <NavIconBox
+                    handleClick={() =>
+                        dispatch(
+                            handleModal(
+                                <SideModal
+                                    title="Cart"
+                                    content={<SmallCart />}
+                                />
+                            )
+                        )
+                    }
+                    props={{ icon: 'cart', number: totalQty }}
+                />
             </nav>
         </header>
     );

@@ -6,19 +6,21 @@ interface IProps {
         icon: string;
         number: number;
     };
+    handleClick?: () => void;
 }
 
 const NavIconBox: React.FC<IProps> = ({
     props: { icon, number },
+    handleClick,
 }: IProps): JSX.Element => {
     return (
-        <a href="/" className="nav-icon__box">
+        <button onClick={handleClick} className="nav-icon__box" type="button">
             <svg className="nav-icon__icon">
                 <use xlinkHref={`${svg}#icon-${icon}`} />
             </svg>
 
             <span className="nav-icon__notification">{number}</span>
-        </a>
+        </button>
     );
 };
 

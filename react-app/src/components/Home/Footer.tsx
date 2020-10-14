@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 // Imports from src
 import footerLinks from '../../app/options/footerLinks';
 import NavigationIcons from './NavigationIcons';
@@ -6,6 +6,10 @@ import Dropdown from '../Dropdown/Dropdown';
 import currencies from '../../app/options/currencies';
 
 const Footer = (): JSX.Element => {
+    const [current, setCurrent] = useState<{ id: number; value: string }>(
+        currencies[0]
+    );
+
     return (
         <footer className="footer">
             <ul className="footer__nav">
@@ -39,7 +43,11 @@ const Footer = (): JSX.Element => {
                 <div className="footer__right-items">
                     <div className="footer__dropdown">
                         <p>Currency</p>
-                        <Dropdown options={currencies} />
+                        <Dropdown
+                            options={currencies}
+                            current={current}
+                            setCurrent={setCurrent}
+                        />
                     </div>
 
                     <img

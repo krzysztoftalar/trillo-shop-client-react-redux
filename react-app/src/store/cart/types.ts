@@ -10,17 +10,25 @@ export interface CartState {
     totalValue: number;
 }
 
-export const ADD_TO_CART = 'ADD_TO_CART';
 export const GET_CART = 'GET_CART';
-
-export interface AddToCartAction extends Action {
-    type: typeof ADD_TO_CART;
-    payload: { quantity: number };
-}
+export const ADD_TO_CART = 'ADD_TO_CART';
+export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
 
 export interface GetCartAction extends Action {
     type: typeof GET_CART;
     payload: ICartEnvelope;
 }
 
-export type CartActionTypes = AddToCartAction | GetCartAction;
+export interface AddToCartAction extends Action {
+    type: typeof ADD_TO_CART;
+    payload: { quantity: number };
+}
+export interface RemoveFromCartAction extends Action {
+    type: typeof REMOVE_FROM_CART;
+    payload: { quantity: number };
+}
+
+export type CartActionTypes =
+    | AddToCartAction
+    | GetCartAction
+    | RemoveFromCartAction;

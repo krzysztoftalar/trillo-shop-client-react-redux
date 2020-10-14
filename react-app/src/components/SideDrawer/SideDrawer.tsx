@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // Imports from src
 import SearchForm from '../Forms/SearchForm';
@@ -16,7 +16,8 @@ import useBodyClass from '../../app/hooks/useBodyClass';
 import { checkIfIsLoggedIn } from '../../store/user/selectors';
 import { logout } from '../../store/user/action';
 import { handleModal, handleSideDrawer } from '../../store/ui/action';
-import AuthForm from '../User/Forms/AuthForm';
+import SideModal from '../Modal/SideModal';
+import LoginForm from '../User/Forms/LoginForm';
 
 const SideDrawer = (): JSX.Element => {
     const dispatch = useDispatch();
@@ -42,8 +43,14 @@ const SideDrawer = (): JSX.Element => {
 
     const handleLogin = () => {
         dispatch(handleSideDrawer());
-        dispatch(handleModal(<AuthForm />));
+        dispatch(
+            handleModal(<SideModal title="Sign In" content={<LoginForm />} />)
+        );
     };
+
+    const [current, setCurrent] = useState<{ id: number; value: string }>(
+        currencies[0]
+    );
 
     return (
         <div
@@ -75,7 +82,11 @@ const SideDrawer = (): JSX.Element => {
 
             <div className="side-drawer__text-box">
                 <span className="side-drawer__text">Currency</span>
-                <Dropdown options={currencies} />
+                <Dropdown
+                    options={currencies}
+                    current={current}
+                    setCurrent={setCurrent}
+                />
             </div>
 
             <hr className="side-drawer__divider" />

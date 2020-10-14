@@ -1,0 +1,122 @@
+.smallCart
+    display: grid
+    grid-gap: 2rem
+    padding-top: 3rem
+    color: $color-primary
+
+    &__item
+        display: flex
+
+    &__img
+        display: block
+        width: 12rem
+        margin-right: 3rem
+
+        img
+            display: block
+            width: 100%
+
+    &__summary-box
+        display: flex
+        flex: 1
+        flex-direction: column
+        justify-content: center
+        font-size: 1.4rem
+
+    &__header-box
+        display: flex
+        align-items: center
+        justify-content: space-between
+        margin-bottom: 0.5rem
+
+    &__title:link,
+    &__title:visited
+        color: $color-primary
+        font-size: $default-font-size
+        font-weight: 700
+        text-decoration: none
+
+    &__btn-delete
+        display: flex
+        align-items: center
+        margin-right: -1rem
+        padding: 1rem
+        background-color: transparent
+
+        &:hover &-icon
+            fill: $color-primary
+
+        &-icon
+            width: 1.6rem
+            height: 1.6rem
+            transition: fill 0.4s
+            fill: $color-grey-light-3
+
+    &__variation-box
+        display: grid
+        grid-template-columns: repeat(5, min-content)
+        grid-gap: 1rem
+        align-items: center
+        margin-bottom: 1rem
+
+    &__color
+        display: block
+        width: 1.5rem
+        height: 1.5rem
+
+    &__qty-box
+        display: grid
+        grid-template-columns: repeat(2, min-content) 1fr
+        align-items: center
+
+        .dropdown
+            font-size: 1.4rem
+
+            &__box
+                padding: 0 1.5rem
+
+            &__list
+                width: auto
+
+            &__option
+                padding: 0.5rem 1.5rem
+
+    &__qty
+        color: $color-grey-dark2
+
+    &__item-price
+        justify-self: end
+        font-weight: 700
+
+    &__total
+        display: flex
+        justify-content: space-between
+        width: 100%
+        margin-top: 4rem
+        margin-bottom: 1rem
+        font-size: $default-font-size
+        font-weight: 400
+
+    & .btn-submit
+        margin-bottom: 4rem
+
+    // Empty cart
+    &__empty
+        width: 100%
+        height: 100%
+
+    &__empty-text
+        display: flex
+        flex-direction: column
+        align-items: center
+        justify-content: center
+        height: 100%
+        transform: translateY(-5rem)
+        color: $color-grey-light-3
+        font-size: 1.8rem
+
+    &__empty-icon
+        width: 20rem
+        height: 20rem
+        margin-bottom: 5rem
+        fill: $color-grey-light-2

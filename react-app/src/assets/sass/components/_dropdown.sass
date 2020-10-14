@@ -13,6 +13,7 @@
 
     &__list
         position: absolute
+        z-index: 100
         top: 100%
         right: 1.5rem
         width: 10rem
@@ -30,7 +31,8 @@
         line-height: 1.7
         cursor: pointer
 
-        &:hover
+        &:hover,
+        &--active
             background-color: #e3e7e8
 
     &__box

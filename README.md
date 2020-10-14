@@ -16,7 +16,7 @@
 
 ## About The Project
 
-_This is the client-side of the Trillo shop application. The project is under construction..._
+_This is the client-side of the Trillo Shop application. The project is under construction..._
 
 <br/>
 
