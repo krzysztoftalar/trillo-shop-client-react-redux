@@ -4,6 +4,9 @@ import { IProduct, IProductsEnvelope } from '../../models/product';
 import { ICategory } from '../../store/category/types';
 import { IUser, IUserFormValues } from '../../store/user/types';
 import { ICartEnvelope } from '../../models/cart';
+import { IDelivery } from '../../models/delivery';
+import { IPayment, IPaymentSession } from '../../models/payment';
+import { IOrderToCreate } from '../../models/order';
 
 axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 
@@ -74,9 +77,29 @@ const Categories = {
     list: (): Promise<ICategory[]> => requests.get('/categories'),
 };
 
+const Delivery = {
+    list: (): Promise<IDelivery[]> => requests.get('/delivery'),
+};
+
+const Payment = {
+    list: (): Promise<IPayment[]> => requests.get('/payments'),
+    createSession: (order: IOrderToCreate): Promise<IPaymentSession> =>
+        axios
+            .post('/payments', order, { withCredentials: true })
+            .then(responseBody),
+};
+
+const Orders = {
+    create: (order: IOrderToCreate) =>
+        axios.post('/orders', order, { withCredentials: true }),
+};
+
 export default {
     User,
     Products,
-    Categories,
     Cart,
+    Categories,
+    Delivery,
+    Payment,
+    Orders,
 };

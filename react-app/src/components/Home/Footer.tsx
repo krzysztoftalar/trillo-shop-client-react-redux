@@ -1,18 +1,23 @@
 import React, { useState } from 'react';
 // Imports from src
-import footerLinks from '../../app/options/footerLinks';
-import NavigationIcons from './NavigationIcons';
 import Dropdown from '../Dropdown/Dropdown';
+import footerLinks from '../../app/options/footerLinks';
 import currencies from '../../app/options/currencies';
+import NavigationIcons from './NavigationIcons';
+import payIcon from '../../assets/img/payments.png';
 
-const Footer = (): JSX.Element => {
+interface IProps {
+    smallFooter?: boolean;
+}
+
+const Footer: React.FC<IProps> = ({ smallFooter }: IProps): JSX.Element => {
     const [current, setCurrent] = useState<{ id: number; value: string }>(
         currencies[0]
     );
 
     return (
         <footer className="footer">
-            <ul className="footer__nav">
+            <ul className={`footer__nav ${smallFooter && 'u-display-none'}`}>
                 {footerLinks.map((item) => (
                     <li className="footer__item" key={item.text}>
                         <a href="/" className="footer__link">
@@ -22,7 +27,11 @@ const Footer = (): JSX.Element => {
                 ))}
             </ul>
 
-            <div className="footer__contact-box u-display-none-s">
+            <div
+                className={`footer__contact-box u-display-none-s ${
+                    smallFooter && 'u-display-none'
+                }`}
+            >
                 <p className="footer__text">trillo@store.com</p>
                 <p className="footer__text">+1 248-785-8545</p>
             </div>
@@ -51,7 +60,7 @@ const Footer = (): JSX.Element => {
                     </div>
 
                     <img
-                        src="./payments.png"
+                        src={payIcon}
                         alt="Payments options"
                         className="footer__img"
                     />

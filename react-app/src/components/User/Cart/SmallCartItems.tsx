@@ -36,7 +36,7 @@ const SmallCartItems: React.FC<IProps> = ({ item }) => {
     const hasColor = item.productColor !== null;
     const hasSize = item.productSize !== null;
 
-    const onDelete = () => {
+    const onItemDelete = () => {
         const { quantity } = item;
         dispatch(removeFromCart(item.stockId, quantity));
     };
@@ -53,7 +53,7 @@ const SmallCartItems: React.FC<IProps> = ({ item }) => {
                         {item.productName}
                     </a>
                     <button
-                        onClick={() => onDelete()}
+                        onClick={() => onItemDelete()}
                         className="smallCart__btn-delete"
                         type="button"
                     >

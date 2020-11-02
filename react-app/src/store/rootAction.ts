@@ -4,6 +4,8 @@ import { UserActionTypes } from './user/types';
 import { UIActionTypes } from './ui/types';
 import { ErrorActionTypes } from './error/type';
 import { CartActionTypes } from './cart/types';
+import { DeliveryActionTypes } from './delivery/types';
+import { PaymentActionTypes } from './payment/types';
 
 export type RootAction =
     | ProductActionTypes
@@ -11,4 +13,6 @@ export type RootAction =
     | UserActionTypes
     | UIActionTypes
     | ErrorActionTypes
-    | CartActionTypes;
+    | CartActionTypes
+    | DeliveryActionTypes
+    | PaymentActionTypes;

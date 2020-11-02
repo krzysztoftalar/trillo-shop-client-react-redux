@@ -1,10 +1,13 @@
 import React from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
-// imports from src
+// Imports from src
 import '../../assets/css/style.css';
 import Home from '../../pages/home';
 import Product from '../../pages/product';
 import Modal from '../../components/Modal/Modal';
+import Checkout from '../../pages/checkout';
+import StripeSuccess from '../../components/User/Payment/StripeSuccess';
+import StripeCanceled from '../../components/User/Payment/StripeCanceled';
 
 const App = (): JSX.Element => {
     // const token = useSelector(getToken());
@@ -26,6 +29,15 @@ const App = (): JSX.Element => {
                     <>
                         <Switch>
                             <Route path="/products/:id" component={Product} />
+                            <Route path="/checkout" component={Checkout} />
+                            <Route
+                                path="/stripe-payment/success"
+                                component={StripeSuccess}
+                            />
+                            <Route
+                                path="/stripe-payment/canceled"
+                                component={StripeCanceled}
+                            />
                         </Switch>
                     </>
                 )}

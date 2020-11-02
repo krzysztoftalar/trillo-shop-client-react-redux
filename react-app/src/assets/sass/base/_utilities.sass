@@ -19,6 +19,9 @@
 
 // Display: none
 // ---------------------------------
+.u-display-none
+    display: none !important
+
 .u-display-none-l
     @include respond-to(L)  // 1200px
         display: none !important
@@ -34,3 +37,15 @@
 .u-display-none-xs
     @include respond-to(XS) // 600px
         display: none !important
+
+// Hide y scroll
+.overflow-hidden
+    overflow-y: hidden
+
+.required
+    margin-left: 0.5rem
+    color: $color-primary
+    text-decoration: none
+    cursor: help
+
+

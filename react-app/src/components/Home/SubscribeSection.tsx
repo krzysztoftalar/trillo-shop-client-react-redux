@@ -26,9 +26,9 @@ const SubscribeSection = (): JSX.Element => {
 
             <form action="#" className="subscribe__form">
                 <input
+                    required
                     className="subscribe__input"
                     type="email"
-                    required
                     placeholder="Your email address"
                 />
                 <button className="subscribe__button" type="submit">

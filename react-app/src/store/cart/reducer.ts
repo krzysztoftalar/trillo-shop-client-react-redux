@@ -1,6 +1,12 @@
 import { Reducer } from 'redux';
 // Imports from src
-import { CartActionTypes, CartState, GET_CART } from './types';
+import {
+    CartActionTypes,
+    CartState,
+    GET_CART,
+    RESET_CART,
+    UPDATE_TOTAL_VALUE,
+} from './types';
 
 export const INITIAL_STATE: CartState = {
     cart: [],
@@ -23,6 +29,21 @@ export const CartReducer: Reducer<CartState, CartActionTypes> = (
                 totalValue,
             };
         }
+
+        case UPDATE_TOTAL_VALUE: {
+            const total = state.cart.reduce(
+                (prev, next) => prev + next.quantity * next.price,
+                0
+            );
+
+            return {
+                ...state,
+                totalValue: total + action.payload,
+            };
+        }
+
+        case RESET_CART:
+            return INITIAL_STATE;
 
         default:
             return state;

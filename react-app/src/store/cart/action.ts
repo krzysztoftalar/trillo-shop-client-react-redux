@@ -2,9 +2,19 @@ import agent, { errorResponse } from '../../app/api/agent';
 import { ThunkResult } from '../../app/helpers/reduxHelpers';
 import { startAction, stopAction } from '../ui/action';
 import { errorAction } from '../error/action';
-import { ADD_TO_CART, GET_CART, REMOVE_FROM_CART } from './types';
+import {
+    ADD_TO_CART,
+    GET_CART,
+    REMOVE_FROM_CART,
+    RESET_CART,
+    ResetCartAction,
+    UPDATE_TOTAL_VALUE,
+    UpdateTotalValueAction,
+} from './types';
 
 export const getCart = (): ThunkResult => async (dispatch) => {
+    dispatch(startAction(GET_CART));
+
     try {
         const cart = await agent.Cart.getCart();
         dispatch({ type: GET_CART, payload: cart });
@@ -48,3 +58,12 @@ export const removeFromCart = (
         dispatch(getCart());
     }
 };
+
+export const updateTotalValue = (value: number): UpdateTotalValueAction => ({
+    type: UPDATE_TOTAL_VALUE,
+    payload: value,
+});
+
+export const resetCart = (): ResetCartAction => ({
+    type: RESET_CART,
+});

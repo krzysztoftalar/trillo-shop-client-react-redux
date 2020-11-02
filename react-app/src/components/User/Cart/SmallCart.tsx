@@ -1,11 +1,14 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 // Imports from src
 import { selectCartState } from '../../../store/cart/selectors';
 import svg from '../../../assets/img/sprite.svg';
 import SmallCartItems from './SmallCartItems';
+import { handleModal } from '../../../store/ui/action';
 
 const SmallCart = (): JSX.Element => {
+    const dispatch = useDispatch();
     const { cart, totalValue } = useSelector(selectCartState());
 
     if (cart.length === 0) {
@@ -27,6 +30,8 @@ const SmallCart = (): JSX.Element => {
                 <SmallCartItems key={item.stockId} item={item} />
             ))}
 
+            <hr className="smallCart__divider" />
+
             <span className="smallCart__total">
                 Subtotal:
                 <span>${totalValue}</span>
@@ -36,9 +41,11 @@ const SmallCart = (): JSX.Element => {
                 View Cart
             </button>
 
-            <button className="btn-submit" type="button">
-                Checkout
-            </button>
+            <Link to="/checkout" onClick={() => dispatch(handleModal())}>
+                <button className="btn-submit" type="button">
+                    Checkout
+                </button>
+            </Link>
         </div>
     );
 };

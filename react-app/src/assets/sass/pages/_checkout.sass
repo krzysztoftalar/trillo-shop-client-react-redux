@@ -1,0 +1,151 @@
+// Checkout page container
+// ---------------------------------
+.checkout
+    display: grid
+    grid-template-columns: [side-start] 6rem [side-end full-start] 6rem [center-start] repeat(8, [col-start] 1fr [col-end]) [center-end side-right-start] 6rem [side-right-end] 6rem [full-end]
+    grid-template-rows: 12rem
+    grid-row-gap: 5rem
+    background-color: $color-white
+
+    // Override styles
+    & .page-title
+        grid-column: 1 / -1
+        grid-row: 2 / 3
+        justify-self: center
+
+    & .footer
+        padding-top: 2rem
+
+    // Main boxes
+    &__login-box
+        display: flex
+        grid-column: center-start / center-end
+        grid-row: 3 / 4
+        align-items: center
+        justify-content: center
+        justify-self: center
+        width: calc(100% / 2)
+        height: 6rem
+        background: $color-grey-light
+        color: $color-grey-dark2
+        font-size: 1.6rem
+
+    &__form
+        display: grid
+        grid-column: center-start / center-end
+        grid-row: 4 / 5
+        grid-template-columns: 17rem 4.5fr 1fr
+        grid-column-gap: 2rem
+        grid-row-gap: 2rem
+        align-items: center
+        padding: 0 7rem
+        font-size: 1.6rem
+        font-weight: 700
+
+        &-title
+            grid-column: 1 / -1
+            margin-bottom: 1rem
+            font-size: 3.5rem
+            font-weight: 400
+
+            &:nth-of-type(2)
+                margin-top: 3rem
+                margin-bottom: 2.5rem
+
+        &-group
+            display: flex
+            grid-column: 2 / 3
+
+            & input:nth-child(1)
+                margin-right: 3rem
+
+        & .basic-input
+            grid-column: 2 / 3
+
+        & .basic-input__label
+            grid-column: 1 / 2
+
+        & .basic-input__label:last-of-type
+            align-self: start
+            padding-top: 1.4rem
+
+        & textarea
+            resize: vertical
+
+    &__review
+        display: grid
+        grid-column: 1 / -1
+        grid-template-columns: 17rem 4.5fr 1fr
+        grid-column-gap: 2rem
+
+        &-item
+            display: flex
+            align-items: center
+            justify-content: space-between
+            width: 100%
+
+            &:not(:last-of-type)
+                margin-bottom: 3rem
+
+            &-name
+                flex: 2
+
+                & .smallCart__variation-box
+                    margin-top: 0.5rem
+                    font-size: 1.4rem
+
+                    & p
+                        font-weight: 400
+
+            &-qty,
+            &-price
+                flex: 1
+
+            &-price
+                text-align: right
+
+        &-total
+            justify-self: end
+
+    &__shipping
+        display: grid
+        grid-column: 1 / -1
+        grid-template-columns: 17rem 4.5fr 1fr
+        grid-column-gap: 2rem
+
+        &-row
+            display: flex
+            justify-content: space-between
+
+        & .checkout__divider
+            grid-column: 2 / 3
+
+    &__payment
+        grid-column: 2 / -1
+
+        &-desc
+            overflow: hidden
+            color: $color-grey-dark
+            font-size: 1.5rem
+            font-weight: 400
+
+        & .checkout__divider
+            margin: 2rem 0
+
+    // Elements
+    &__btn-login
+        background-color: transparent
+        color: $color-primary
+        font-size: 1.6rem
+        font-weight: 700
+
+    &__divider
+        grid-column: 1 / -1
+        margin: 3rem 0
+        border: none
+        border-bottom: $line
+
+    &__policy
+        margin: 7rem 0
+        font-size: 1.5rem
+        font-weight: 400
