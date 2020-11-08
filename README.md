@@ -18,6 +18,8 @@
 
 _This is the client-side of the Trillo Shop application. The project is under construction..._
 
+_Go to **[Trillo Shop Server](https://github.com/krzysztoftalar/trillo-shop-server-net-core)**._
+
 <br/>
 
 <p align="center">
@@ -34,7 +36,9 @@ _This is the client-side of the Trillo Shop application. The project is under co
 
 ## Features
 
-- Login
+- Shopping cart management
+- Creating an order
+- Payment with Stripe
 
 ## Built With
 
@@ -47,12 +51,14 @@ _This is the client-side of the Trillo Shop application. The project is under co
 | [Axios](https://github.com/axios/axios)
 | [React Hook Form](https://react-hook-form.com/)
 | [Sass](https://sass-lang.com/)
+| [Stripe](https://stripe.com/en-pl)
 
 ## Getting Started
 
 ### Prerequisites
 
--  Node.js
+- Node.js
+- Stripe account - for payment testing use this card number: 4242 4242 4242 4242, future expiration date and three-number CVC.
 
 ### Installation
 
