@@ -6,8 +6,8 @@ import Home from '../../pages/home';
 import Product from '../../pages/product';
 import Modal from '../../components/Modal/Modal';
 import Checkout from '../../pages/checkout';
-import StripeSuccess from '../../components/User/Payment/StripeSuccess';
 import StripeCanceled from '../../components/User/Payment/StripeCanceled';
+import OrderSuccess from '../../components/User/Payment/OrderSuccess';
 
 const App = (): JSX.Element => {
     // const token = useSelector(getToken());
@@ -31,8 +31,11 @@ const App = (): JSX.Element => {
                             <Route path="/products/:id" component={Product} />
                             <Route path="/checkout" component={Checkout} />
                             <Route
-                                path="/stripe-payment/success"
-                                component={StripeSuccess}
+                                path={[
+                                    '/stripe-payment/success',
+                                    '/orders/success',
+                                ]}
+                                component={OrderSuccess}
                             />
                             <Route
                                 path="/stripe-payment/canceled"

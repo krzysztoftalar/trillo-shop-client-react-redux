@@ -33,7 +33,7 @@ const Product: React.FC<RouteComponentProps<DetailParams>> = ({
         dispatch(getProduct(Number(match.params.id)));
     }, [match.params.id, history, dispatch]);
 
-    if (!product) return <h1>Product not found</h1>;
+    if (!product) return <h1>Loading...</h1>;
 
     // Calculate rating
     const value = ((product?.rating / 5) * 100).toPrecision(3);

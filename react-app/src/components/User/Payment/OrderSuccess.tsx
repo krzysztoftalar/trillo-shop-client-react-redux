@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-const StripeSuccess = (): JSX.Element => {
+const OrderSuccess = (): JSX.Element => {
     const dispatch = useDispatch();
 
     useEffect(() => {}, []);
@@ -13,4 +13,4 @@ const StripeSuccess = (): JSX.Element => {
     );
 };
 
-export default StripeSuccess;
+export default OrderSuccess;

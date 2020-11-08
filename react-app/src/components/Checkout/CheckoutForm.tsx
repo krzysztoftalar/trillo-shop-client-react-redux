@@ -9,19 +9,19 @@ import { IAddress } from '../../models/address';
 import { IOrderToCreate } from '../../models/order';
 import { payWithStripe } from '../../store/payment/actions';
 
-const testingValues: IAddress = {
-    firstName: 'a',
-    lastName: 'a',
-    companyName: 'a',
-    email: 'abcd@test.com',
-    phoneNumber: 'a',
-    country: 'a',
-    city: 'a',
-    state: 'a',
-    street: 'a',
-    homeNumber: 'a',
-    zipCode: 'a',
-};
+// const testingValues: IAddress = {
+//     firstName: 'a',
+//     lastName: 'a',
+//     companyName: 'a',
+//     email: 'abcd@test.com',
+//     phoneNumber: 'a',
+//     country: 'a',
+//     city: 'a',
+//     state: 'a',
+//     street: 'a',
+//     homeNumber: 'a',
+//     zipCode: 'a',
+// };
 
 const CheckoutForm = (): JSX.Element => {
     const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const CheckoutForm = (): JSX.Element => {
     const [paymentId, setPaymentId] = useState(1);
 
     const { register, handleSubmit, errors } = useForm<IAddress>({
-        defaultValues: testingValues,
+        // defaultValues: testingValues,
     });
 
     const onSubmit = async (shipToAddress: IAddress) => {
@@ -44,8 +44,7 @@ const CheckoutForm = (): JSX.Element => {
         if (paymentId === 3) {
             dispatch(payWithStripe(order));
         } else {
-            dispatch(createOrder(order));
-            history.push('/');
+            dispatch(createOrder(order, history));
         }
     };
 

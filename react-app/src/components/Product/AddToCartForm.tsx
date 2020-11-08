@@ -1,10 +1,13 @@
 import React, { FormEvent, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import _ from 'lodash';
 // Imports from src
 import svg from '../../assets/img/sprite.svg';
 import { IStock } from '../../models/stock';
 import { addToCart } from '../../store/cart/action';
+import ButtonIndicator from '../Forms/ButtonIndicator';
+import { selectLoader } from '../../store/ui/selectors';
+import { ADD_TO_CART } from '../../store/cart/types';
 
 interface IProps {
     stocks: IStock[];
@@ -40,6 +43,8 @@ const AddToCartForm: React.FC<IProps> = ({ stocks }): JSX.Element => {
     // Check if product has color or size
     const hasColors = stocks.some((x) => x.productColor === null);
     const hasSizes = stocks.some((x) => x.productSize === null);
+
+    const submitting = useSelector(selectLoader(ADD_TO_CART));
 
     return (
         <form
@@ -130,7 +135,7 @@ const AddToCartForm: React.FC<IProps> = ({ stocks }): JSX.Element => {
                 </div>
 
                 <button className="btn-submit" type="submit">
-                    Add to cart
+                    {submitting ? <ButtonIndicator /> : 'Add to cart'}
                 </button>
             </div>
         </form>

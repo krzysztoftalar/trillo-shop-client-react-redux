@@ -2036,7 +2036,8 @@ button {
   .product__btn-color {
     position: relative;
     width: 2.5rem;
-    height: 2.5rem; }
+    height: 2.5rem;
+    border: 1px solid black; }
     .product__btn-color::after {
       content: '';
       display: inline-block;
