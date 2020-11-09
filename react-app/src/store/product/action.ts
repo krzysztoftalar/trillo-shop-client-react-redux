@@ -1,4 +1,4 @@
-import agent from '../../app/api/agent';
+import agent, { errorResponse } from '../../app/api/agent';
 import {
     GET_PRODUCT,
     GET_PRODUCTS,
@@ -9,6 +9,7 @@ import {
 import { ThunkResult } from '../../app/helpers/reduxHelpers';
 import { startAction, stopAction } from '../ui/action';
 import setProductParams from '../../app/helpers/setProductParams';
+import { errorAction } from '../error/action';
 
 export const getProducts = (
     params?: { [key: string]: string }[],
@@ -24,7 +25,7 @@ export const getProducts = (
         );
         dispatch({ type: GET_PRODUCTS, payload: { products, type } });
     } catch (error) {
-        // dispatch(errorActionAsync(error));
+        dispatch(errorAction(GET_PRODUCTS, errorResponse(error)));
     } finally {
         dispatch(stopAction(GET_PRODUCTS));
     }
@@ -40,7 +41,7 @@ export const getProduct = (id: number): ThunkResult => async (dispatch) => {
             payload: product,
         });
     } catch (error) {
-        // dispatch(errorActionAsync(error));
+        dispatch(errorAction(GET_PRODUCT, errorResponse(error)));
     } finally {
         dispatch(stopAction(GET_PRODUCT));
     }

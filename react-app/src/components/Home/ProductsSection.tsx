@@ -5,6 +5,8 @@ import ProductCard from '../ProductCard/ProductCard';
 import OutlineButton from '../Buttons/OutlineButton';
 import { getProducts } from '../../store/product/action';
 import { selectProductState } from '../../store/product/selectors';
+import { selectLoader } from '../../store/ui/selectors';
+import { GET_PRODUCTS } from '../../store/product/types';
 
 const ProductsSection = (): JSX.Element => {
     // Get featured products
@@ -14,6 +16,7 @@ const ProductsSection = (): JSX.Element => {
     }, [dispatch]);
 
     const { featuredProducts } = useSelector(selectProductState());
+    const loading = useSelector(selectLoader(GET_PRODUCTS));
 
     return (
         <section className="products">
@@ -30,9 +33,13 @@ const ProductsSection = (): JSX.Element => {
                 </p>
             </div>
 
-            {featuredProducts.map((product) => (
-                <ProductCard key={product.id} product={product} />
-            ))}
+            {loading ? (
+                <h2>Loading...</h2>
+            ) : (
+                featuredProducts.map((product) => (
+                    <ProductCard key={product.id} product={product} />
+                ))
+            )}
 
             <div className="products__button-box">
                 <OutlineButton content="See all products" />
