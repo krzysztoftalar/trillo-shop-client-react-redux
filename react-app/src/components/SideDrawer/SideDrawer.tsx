@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import SearchForm from '../Forms/SearchForm';
 import headerLinks from '../../app/options/headerLinks';
 import NavIconBox from '../Navigation/NavIconBox';
-import Navigation from '../Navigation/Navigation';
 import { icons, iconsText } from '../../app/options/navIcons';
 import NavigationItem from '../Navigation/NavigationItem';
 import NavigationIcons from '../Home/NavigationIcons';
@@ -18,6 +17,8 @@ import { logout } from '../../store/user/action';
 import { handleModal, handleSideDrawer } from '../../store/ui/action';
 import SideModal from '../Modal/SideModal';
 import LoginForm from '../User/Forms/LoginForm';
+import SmallCart from '../User/Cart/SmallCart';
+import { selectCartState } from '../../store/cart/selectors';
 
 const SideDrawer = (): JSX.Element => {
     const dispatch = useDispatch();
@@ -25,6 +26,7 @@ const SideDrawer = (): JSX.Element => {
     const open = useSelector<RootState, boolean>(
         (state) => state.ui.openSideDrawer
     );
+    const { totalQty } = useSelector(selectCartState());
     const isLoggedIn = useSelector(checkIfIsLoggedIn());
 
     // Classes for styling Navigation component
@@ -48,6 +50,12 @@ const SideDrawer = (): JSX.Element => {
         );
     };
 
+    const handleShowCart = () => {
+        dispatch(
+            handleModal(<SideModal title="Cart" content={<SmallCart />} />)
+        );
+    };
+
     const [current, setCurrent] = useState<{ id: number; value: string }>(
         currencies[0]
     );
@@ -62,24 +70,49 @@ const SideDrawer = (): JSX.Element => {
                 <Header />
             </div>
 
+            {/* Search form */}
             <SearchForm props="search__input--right-side" />
 
-            <Navigation props={navProps} links={headerLinks} />
+            {/* Header links */}
+            <ul className="navigation navigation--col">
+                {headerLinks.map((item) => (
+                    <NavigationItem
+                        link={item}
+                        props={navProps}
+                        onClick={() => {}}
+                        key={item.id}
+                    />
+                ))}
+            </ul>
 
             <hr className="side-drawer__divider" />
 
+            {/* Shopping cart */}
             <div className="side-drawer__text-box">
-                <NavigationItem props={navProps} link={iconsText[1]} />
-                <NavIconBox props={icons[1]} />
+                <NavigationItem
+                    props={navProps}
+                    link={iconsText[1]}
+                    onClick={handleShowCart}
+                />
+                <NavIconBox
+                    handleClick={handleShowCart}
+                    props={{ icon: 'cart', number: totalQty }}
+                />
             </div>
 
+            {/* Wishlist */}
             <div className="side-drawer__text-box">
-                <NavigationItem props={navProps} link={iconsText[0]} />
+                <NavigationItem
+                    props={navProps}
+                    link={iconsText[0]}
+                    onClick={() => {}}
+                />
                 <NavIconBox props={icons[0]} />
             </div>
 
             <hr className="side-drawer__divider" />
 
+            {/* Currency */}
             <div className="side-drawer__text-box">
                 <span className="side-drawer__text">Currency</span>
                 <Dropdown
@@ -91,7 +124,7 @@ const SideDrawer = (): JSX.Element => {
 
             <hr className="side-drawer__divider" />
 
-            {/* <NavigationItem props={navProps} link={iconsText[2]} /> */}
+            {/* Sign In or Sign Out options */}
             {isLoggedIn ? (
                 <>
                     <div className="side-drawer__btn-box">
@@ -126,6 +159,7 @@ const SideDrawer = (): JSX.Element => {
 
             <hr className="side-drawer__divider" />
 
+            {/* Social links */}
             <div className="side-drawer__icons-box">
                 <NavigationIcons />
             </div>

@@ -67,7 +67,7 @@ const Product: React.FC<RouteComponentProps<DetailParams>> = ({
                     <Rating rating={{ value, count }} />
                 </div>
 
-                <p className="product__price">{product.price}</p>
+                <p className="product__price">${product.price}</p>
 
                 {/* Selection form */}
                 <AddToCartForm stocks={product.stocks} />

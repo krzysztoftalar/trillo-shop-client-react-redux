@@ -72,7 +72,7 @@ const ProductCard: React.FC<IProps> = ({ product }: IProps): JSX.Element => {
                     <Link to={`products/${product.id}`}>{name}</Link>
                 </h2>
 
-                <span className="productCard__price">{price}</span>
+                <span className="productCard__price">${price}</span>
 
                 <div className="productCard__buttons">
                     <button className="productCard__btn" type="button">

@@ -13,7 +13,9 @@ axios.defaults.baseURL = process.env.REACT_APP_API_URL;
 axios.interceptors.request.use(
     (config) => {
         const token = window.localStorage.getItem('jwt');
-        if (token) config.headers.Authorization = `Bearer ${token}`;
+        if (token) {
+            config.headers.Authorization = `Bearer ${token}`;
+        }
         return config;
     },
     (error) => {
@@ -24,7 +26,7 @@ axios.interceptors.request.use(
 axios.interceptors.response.use(undefined, (error) => {
     const { status, headers } = error.response;
 
-    if (status === 401 && headers['www-authenticate']) {
+    if (status === 401 && headers['token-expired']) {
         window.localStorage.removeItem('jwt');
     }
 
@@ -34,7 +36,7 @@ axios.interceptors.response.use(undefined, (error) => {
 export const errorResponse = (error: AxiosError): string =>
     error.response?.data.errors;
 
-export const responseBody = (response: AxiosResponse): Promise<any> =>
+export const responseBody = (response: AxiosResponse): Promise<never> =>
     response.data;
 
 const requests = {
@@ -46,8 +48,17 @@ const requests = {
 
 const User = {
     login: (user: IUserFormValues): Promise<IUser> =>
-        requests.post('/users/login', user),
-    currentUser: (): Promise<IUser> => requests.get('/users'),
+        axios
+            .post('/users/login', user, { withCredentials: true })
+            .then(responseBody),
+    currentUser: (): Promise<IUser> =>
+        axios
+            .post('/users/current', {}, { withCredentials: true })
+            .then(responseBody),
+    logout: () =>
+        axios
+            .post('/users/logout', {}, { withCredentials: true })
+            .then(responseBody),
 };
 
 const Products = {

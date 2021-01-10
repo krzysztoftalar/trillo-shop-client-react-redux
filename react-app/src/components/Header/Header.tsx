@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // Imports from src
 import HamburgerButton from '../Buttons/HamburgerButton';
-import Navigation from '../Navigation/Navigation';
 import headerLinks from '../../app/options/headerLinks';
 import accountLinks from '../../app/options/accountLinks';
 import SearchForm from '../Forms/SearchForm';
@@ -17,6 +16,7 @@ import { selectCartState } from '../../store/cart/selectors';
 import SideModal from '../Modal/SideModal';
 import LoginForm from '../User/Forms/LoginForm';
 import SmallCart from '../User/Cart/SmallCart';
+import NavigationItem from '../Navigation/NavigationItem';
 
 interface StateProps {
     openSideDrawer: boolean;
@@ -42,9 +42,30 @@ const Header: React.FC<IProps> = ({ props }: IProps): JSX.Element => {
 
     // Classes for styling Navigation component
     const navProps = {
-        ul: 'navigation--col navigation--box',
+        ul: '',
         li: 'navigation__item--box',
         a: 'navigation__link--box',
+    };
+
+    // My Account box handlers
+    const onMyAccountItemClick = (id: number) => {
+        switch (id) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+            case 5:
+                break;
+            case 6:
+                dispatch(logout());
+                break;
+            default:
+                break;
+        }
     };
 
     return (
@@ -62,7 +83,15 @@ const Header: React.FC<IProps> = ({ props }: IProps): JSX.Element => {
                 <h3 className="site-title">Trillo</h3>
 
                 <div className="u-display-none-l">
-                    <Navigation links={headerLinks} />
+                    <ul className="navigation">
+                        {headerLinks.map((item) => (
+                            <NavigationItem
+                                link={item}
+                                onClick={() => {}}
+                                key={item.id}
+                            />
+                        ))}
+                    </ul>
                 </div>
             </nav>
 
@@ -98,17 +127,18 @@ const Header: React.FC<IProps> = ({ props }: IProps): JSX.Element => {
                         </button>
 
                         <div className="header__account-links">
-                            <Navigation props={navProps} links={accountLinks} />
-
-                            <div className="header__account-links-box">
-                                <button
-                                    onClick={() => dispatch(logout())}
-                                    className="btn-link btn-link--small full-underline"
-                                    type="button"
-                                >
-                                    Logout
-                                </button>
-                            </div>
+                            <ul className="navigation navigation--col navigation--box">
+                                {accountLinks.map((item) => (
+                                    <NavigationItem
+                                        link={item}
+                                        props={navProps}
+                                        onClick={() =>
+                                            onMyAccountItemClick(item.id)
+                                        }
+                                        key={item.id}
+                                    />
+                                ))}
+                            </ul>
                         </div>
                     </div>
                 )}
@@ -118,7 +148,7 @@ const Header: React.FC<IProps> = ({ props }: IProps): JSX.Element => {
                     <SearchForm props={props} />
                 </div>
 
-                {/* -------- Cart and wishlist quantity -------- */}
+                {/* -------- Cart and Wishlist quantity -------- */}
                 <div className="u-display-none-l">
                     <NavIconBox props={icons[0]} />
                 </div>

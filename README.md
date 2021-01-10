@@ -38,7 +38,8 @@ _Go to **[Trillo Shop Server](https://github.com/krzysztoftalar/trillo-shop-serv
 
 - Shopping cart management
 - Creating an order
-- Payment with Stripe
+- Payment with Stripe - for payment testing use this card number: `4242 4242 4242 4242`, future expiration date and three-number CVC.
+- Login - test account: `email: bob@test.com` `password: Pa$$w0rd`
 
 ## Built With
 
@@ -58,7 +59,7 @@ _Go to **[Trillo Shop Server](https://github.com/krzysztoftalar/trillo-shop-serv
 ### Prerequisites
 
 - Node.js
-- Stripe account - for payment testing use this card number: 4242 4242 4242 4242, future expiration date and three-number CVC.
+- Stripe account 
 
 ### Installation
 
@@ -67,8 +68,14 @@ _Go to **[Trillo Shop Server](https://github.com/krzysztoftalar/trillo-shop-serv
 ```shell
 npm install
 ```
+
+2. **For Stripe payment set your public key in `.env.development` file**
+
+```dotenv
+STRIPE_PUBLIC_KEY="ENTER YOUR PUBLIC KEY" 
+```
       
-2. **Start the development environment.**
+3. **Start the development environment.**
 
 ```shell
 npm start

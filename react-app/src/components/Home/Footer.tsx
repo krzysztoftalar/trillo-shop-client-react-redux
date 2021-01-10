@@ -45,7 +45,7 @@ const Footer: React.FC<IProps> = ({ smallFooter }: IProps): JSX.Element => {
                     </div>
 
                     <p className="footer__text">
-                        &copy; 2020 Trillo All rights reserved
+                        &copy; {new Date().getFullYear()} Trillo All rights reserved
                     </p>
                 </div>
 

@@ -1,15 +1,42 @@
 import { ThunkResult } from '../../app/helpers/reduxHelpers';
 // Imports from src
 import agent, { errorResponse } from '../../app/api/agent';
-import {
-    GET_CURRENT_USER,
-    IUserFormValues,
-    LOGIN,
-    LOGOUT,
-    LogoutAction,
-} from './types';
+import { CURRENT_USER, IUserFormValues, LOGIN, LOGOUT } from './types';
 import { handleModal, startAction, stopAction } from '../ui/action';
 import { errorAction } from '../error/action';
+import { calcTokenTimeout } from '../../app/helpers/calculateTokenTimeOut';
+import { JWT_TOKEN } from '../../app/helpers/constants';
+
+export const currentUser = (): ThunkResult => async (dispatch) => {
+    dispatch(startAction(CURRENT_USER));
+
+    const token = window.localStorage.getItem(JWT_TOKEN);
+
+    if (token !== null) {
+        try {
+            const user = await agent.User.currentUser();
+
+            dispatch({
+                type: CURRENT_USER,
+                payload: {
+                    user,
+                    timer: setTimeout(
+                        () => dispatch(currentUser()),
+                        calcTokenTimeout(user.token)
+                    ),
+                },
+            });
+
+            window.localStorage.setItem(JWT_TOKEN, user.token);
+        } catch (error) {
+            dispatch(errorAction(CURRENT_USER, errorResponse(error)));
+        } finally {
+            dispatch(stopAction(CURRENT_USER));
+        }
+    } else {
+        dispatch({ type: CURRENT_USER, payload: { user: null } });
+    }
+};
 
 export const login = (userValues: IUserFormValues): ThunkResult => async (
     dispatch
@@ -19,7 +46,19 @@ export const login = (userValues: IUserFormValues): ThunkResult => async (
 
     try {
         const user = await agent.User.login(userValues);
-        dispatch({ type: LOGIN, payload: user });
+
+        dispatch({
+            type: LOGIN,
+            payload: {
+                user,
+                timer: setTimeout(
+                    () => dispatch(currentUser()),
+                    calcTokenTimeout(user.token)
+                ),
+            },
+        });
+
+        window.localStorage.setItem(JWT_TOKEN, user.token);
 
         dispatch(handleModal());
     } catch (error) {
@@ -29,19 +68,16 @@ export const login = (userValues: IUserFormValues): ThunkResult => async (
     }
 };
 
-export const logout = (): LogoutAction => ({
-    type: LOGOUT,
-});
-
-export const getCurrentUser = (): ThunkResult => async (dispatch) => {
-    dispatch(startAction(GET_CURRENT_USER));
+export const logout = (): ThunkResult => async (dispatch) => {
+    dispatch(startAction(LOGOUT));
 
     try {
-        const user = await agent.User.currentUser();
-        dispatch({ type: GET_CURRENT_USER, payload: user });
+        await agent.User.logout();
+        dispatch({ type: LOGOUT });
+        window.localStorage.removeItem(JWT_TOKEN);
     } catch (error) {
-        dispatch(errorAction(GET_CURRENT_USER, errorResponse(error)));
+        dispatch(errorAction(LOGOUT, errorResponse(error)));
     } finally {
-        dispatch(stopAction(GET_CURRENT_USER));
+        dispatch(stopAction(LOGOUT));
     }
 };

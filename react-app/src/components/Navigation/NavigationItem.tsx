@@ -9,20 +9,24 @@ interface IProps {
     link: {
         text: string;
     };
+    onClick: () => void;
 }
 
 const NavigationItem: React.FC<IProps> = ({
     props,
     link,
+    onClick,
 }: IProps): JSX.Element => {
     return (
-        <ul className={`navigation ${props?.ul}`}>
-            <li className={`navigation__item ${props?.li}`}>
-                <a href="/" className={`navigation__link ${props?.a}`}>
-                    {link?.text}
-                </a>
-            </li>
-        </ul>
+        <li className={`navigation__item ${props?.li}`}>
+            <button
+                onClick={onClick}
+                className={`navigation__link ${props?.a}`}
+                type="button"
+            >
+                {link?.text}
+            </button>
+        </li>
     );
 };
 

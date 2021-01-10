@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Switch, withRouter } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 // Imports from src
 import '../../assets/css/style.css';
 import Home from '../../pages/home';
@@ -8,16 +9,14 @@ import Modal from '../../components/Modal/Modal';
 import Checkout from '../../pages/checkout';
 import StripeCanceled from '../../components/User/Payment/StripeCanceled';
 import OrderSuccess from '../../components/User/Payment/OrderSuccess';
+import { currentUser } from '../../store/user/action';
 
 const App = (): JSX.Element => {
-    // const token = useSelector(getToken());
-    // const dispatch = useDispatch();
-    //
-    // useEffect(() => {
-    //     if (token) {
-    //         dispatch(getCurrentUser());
-    //     }
-    // }, [token, dispatch]);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(currentUser());
+    }, [dispatch]);
 
     return (
         <>

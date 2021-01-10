@@ -15,25 +15,25 @@ export interface IUserFormValues {
 
 export interface UserState {
     user: IUser | null;
-    token: string | null;
+    timer: any;
 }
 
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';
-export const GET_CURRENT_USER = 'GET_CURRENT_USER';
+export const CURRENT_USER = 'CURRENT_USER';
 
 export interface LoginAction extends Action {
     type: typeof LOGIN;
-    payload: IUser;
+    payload: { user: IUser | null; timer: NodeJS.Timeout };
 }
 
 export interface LogoutAction extends Action {
     type: typeof LOGOUT;
 }
 
-export interface GetCurrentUserAction extends Action {
-    type: typeof GET_CURRENT_USER;
-    payload: IUser;
+export interface CurrentUserAction extends Action {
+    type: typeof CURRENT_USER;
+    payload: { user: IUser | null; timer?: NodeJS.Timeout };
 }
 
-export type UserActionTypes = LoginAction | LogoutAction | GetCurrentUserAction;
+export type UserActionTypes = LoginAction | LogoutAction | CurrentUserAction;

@@ -739,27 +739,27 @@ button {
   color: white; }
 
 .navigation {
-  display: flex;
-  list-style: none; }
+  display: flex; }
   .navigation--col {
     flex-direction: column; }
   .navigation--box {
-    padding: 3rem 4rem 0;
+    padding: 3rem 4rem;
     background-color: white;
     box-shadow: 0 0 30rem 0 rgba(0, 0, 0, 0.1); }
   .navigation__item {
-    padding: 2rem; }
+    padding: 2rem;
+    list-style: none; }
     .navigation__item--col {
       padding: 1.5rem; }
     .navigation__item--box {
       padding: 1rem 0; }
-  .navigation__link:link, .navigation__link:visited {
-    display: inline-block;
+  .navigation__link {
     position: relative;
+    background-color: transparent;
     color: black;
     font-size: 1.6rem;
     text-decoration: none; }
-    .navigation__link:link::before, .navigation__link:visited::before {
+    .navigation__link::before {
       content: '';
       display: inline-block;
       position: absolute;
@@ -771,10 +771,10 @@ button {
       transform-origin: 100% 50%;
       transition: transform 0.3s;
       background-color: currentColor; }
-  .navigation__link--box:link, .navigation__link--box:visited {
-    font-size: 1.4rem; }
-    .navigation__link--box:link::before, .navigation__link--box:visited::before {
-      top: 2.2rem; }
+    .navigation__link--box {
+      font-size: 1.4rem; }
+      .navigation__link--box::before {
+        top: 2.2rem; }
   .navigation__item:hover .navigation__link::before,
   .navigation__item:focus .navigation__link::before,
   .navigation__item:active .navigation__link::before {
@@ -1471,7 +1471,8 @@ button {
   justify-items: start;
   width: 40rem;
   height: 100%;
-  padding: 0 1rem;
+  padding-right: 1rem;
+  padding-left: 0.5rem;
   overflow-x: hidden;
   overflow-y: scroll;
   background-color: white; }
@@ -1521,6 +1522,7 @@ button {
     grid-row: 2 / 3;
     justify-self: center; }
   .checkout .footer {
+    grid-row: 5 / 6;
     padding-top: 2rem; }
   .checkout__login-box {
     display: flex;

@@ -1,17 +1,17 @@
 .navigation
     display: flex
-    list-style: none
 
     &--col
         flex-direction: column
 
     &--box
-        padding: 3rem 4rem 0
+        padding: 3rem 4rem
         background-color: $color-white
         box-shadow: 0 0 30rem 0 rgba(0, 0, 0, 0.1)
 
     &__item
         padding: 2rem
+        list-style: none
 
         &--col
             padding: 1.5rem
@@ -19,10 +19,9 @@
         &--box
             padding: 1rem 0
 
-    &__link:link,
-    &__link:visited
-        display: inline-block
+    &__link
         position: relative
+        background-color: transparent
         color: $color-primary
         font-size: $default-font-size
         text-decoration: none
@@ -40,9 +39,7 @@
             transition: transform 0.3s
             background-color: currentColor
 
-    &__link
-        &--box:link,
-        &--box:visited
+        &--box
             font-size: 1.4rem
 
             &::before
