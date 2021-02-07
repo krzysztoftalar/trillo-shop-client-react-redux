@@ -1,10 +1,14 @@
 import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useCookies } from 'react-cookie';
+// Imports from src
+import { CART_COOKIE } from '../../../app/helpers/constants';
 
 const OrderSuccess = (): JSX.Element => {
-    const dispatch = useDispatch();
+    const [, , removeCookie] = useCookies([CART_COOKIE]);
 
-    useEffect(() => {}, []);
+    useEffect(() => {
+        removeCookie(CART_COOKIE, { path: '/' });
+    }, [removeCookie]);
 
     return (
         <div>
